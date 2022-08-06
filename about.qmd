@@ -1,9 +1,19 @@
 ---
 title: "About"
+about:
+  template: solana
+  image: ../images/profile.jpeg
+  links:
+    - icon: twitter
+      text: twitter
+      href: https://twitter.com/mldebusklane
+    - icon: github
+      text: Github
+      href: https://github.com/debusklaneml
 ---
 
-About this site
+I am currently a computational social scientist at Gallup. I currently work on two DARPA programs (HABITUS, ASIST) where I help lead various analytic efforts around prediction, modeling, and natural language. 
 
-```{r}
-1 + 1
-```
+
+
+
