@@ -29,7 +29,7 @@ All opinions my own.
 <a class="btn btn-outline-light", href="https://github.com/debusklaneml" target="_blank" rel="noopener noreferrer">
     <i class="bi bi-github" role='img' aria-label='Github'></i>
 </a>
-<a class="btn btn-outline-light", href="www.linkedin.com/in/debusklaneml" target="_blank" rel="noopener noreferrer">
+<a class="btn btn-outline-light", href="https://linkedin.com/in/debusklaneml" target="_blank" rel="noopener noreferrer">
     <i class="bi bi-linkedin" role='img' aria-label='LinkedIn'></i>
 </a>
 
