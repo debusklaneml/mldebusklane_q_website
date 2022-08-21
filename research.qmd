@@ -1,9 +1,11 @@
 ---
 title: "Research"
 listing:
+  type: grid
   contents: research
   sort: "date desc"
-  type: default
   categories: true
-  feed: true
+  sort-ui: true
+  filter-ui: true 
+  fields: [image, date, title, categories]
 ---
