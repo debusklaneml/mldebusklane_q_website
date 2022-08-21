@@ -1,5 +1,11 @@
 [
   {
+    "listing": "/research.html",
+    "items": [
+      "/research/cb_kh_md_2019/cb_kh_md_2019.html"
+    ]
+  },
+  {
     "listing": "/blog.html",
     "items": [
       "/posts/soduku_R/sudoku_R.html",

@@ -1,0 +1,198 @@
+---
+title: ""
+format: 
+  html:
+    mainfont: sans-serif
+    linestretch: 1.8
+    fontsize: 1em
+
+toc-title: Sections
+
+---
+
+# **Morgan 'Les' DeBusk-Lane, Ph.D.** {.unnumbered .unlisted}
+
+Email: mldebusklane\@gmail.com\
+*Crafted: Aug, 2022*
+
+# **Education**
+
+-   Doctor of Philosophy (Educational Psychology), Virginia Commonwealth University: Advisor: Dr. Sharon Zumbrunn
+    -   Dissertation Title: *Variable- and Person-Centered Approaches to Examining Construct-Relevant Psychometric Multidimensionality in Writing Self-Efficacy.*
+-   Bachelor of Science in Psychology, Pennsylvania State University - with High Distinction.
+
+# **Peer Reviewed Articles** 
+(alphabetical)
+
+<p class="hangingindent">
+Bae, C. & DeBusk-Lane, M. (2019). Middle school engagement: Implications for motivation and achievement in science. Learning and        Individual Differences, 74, https://doi.org/10.1016/j.lindif.2019.101753
+<p>
+<p class="hangingindent">
+Bae, C. & DeBusk-Lane, M. (2018). Stability of motivation belief profiles in science: Links to classroom goal structures and achievement. Learning and Individual Differences, 67, 91-104. https://doi.org/10.1016/j.lindif.2018.08.003
+<p>
+
+<p class="hangingindent">
+Bae, C., DeBusk-Lane, M., Hayes, K. & Zhang, F. (2018). Opportunities to participate (OtP) in science: Examining differences longitudinally and across socioeconomically diverse schools. Research in Science Education, 1-22. https://doi.org/10.1007/s11165-018-9797-5
+<p>
+
+<p class="hangingindent">
+Bae, C., Hayes, K., DeBusk-Lane, M. (2020). Profiles of middle school science teachers: Accounting for cognitive and motivational characteristics. Journal of Research in Science Teaching, 57(6), 911-942.
+<p>
+
+<p class="hangingindent">
+Bae, C. L., DeBusk-Lane, M., & Lester, A. M. (2020). Engagement profiles of elementary students in urban schools. Contemporary Educational Psychology, 62, 101880. https://doi.org/10.1016/j.cedpsych.2020.101880
+<p>
+
+<p class="hangingindent">
+DeBusk-Lane, M., Zumbrunn, S., Bae, C., Broda, M., Bruning, R., & Sjogren, A. (2022). Variable- and Person-Centered Approaches to Examining Construct-Relevant Multidimensionality in Writing Self-Efficacy. Manuscript submitted for publication. 
+<p>
+
+<p class="hangingindent">
+Ekholm, E., Zumbrunn, S., & DeBusk-Lane, M. (2017). Clarifying an elusive construct: A systematic review of writing attitudes. Educational Psychology Review, 30(3), 827-856. https://doi.org/10.1007/s10648-017-9423-5
+<p>
+
+<p class="hangingindent">
+Redifer, J., Bae, C., & DeBusk-Lane, M. (2019). Implicit Theories, Working Memory, and Cognitive Load: Impacts on Creative Thinking. SAGE Open, 9(1), 1-16. https://doi.org/10.1177/2158244019835919
+<p>
+
+<p class="hangingindent">
+Zumbrunn, S., Ekholm, E., Stringer, J. K., McKnight, K., & DeBusk-Lane, M. (2017). Student Experiences With Writing: Taking the Temperature of the Classroom. The Reading Teacher, 70(6), 667–677. https://doi.org/10.1002/trtr.1574
+<p>
+
+<p class="hangingindent">
+Zumbrunn, S., Marrs, S., Broda, M., Ekholm, E., DeBusk-Lane, M., Jackson, L. (2019). Toward a more complete understanding of elementary writing attitudes: A mixed methods study of elementary students. AERA Open, 5(2), 1-16.
+<p>
+
+# **Peer Reviewed Presentations** 
+(alphabetical)
+
+<p class="hangingindent">
+DeBusk-Lane, M., Bae, C.,  & Lester, A. Student engagement in urban elementary schools: A Variable- and person-centered approach (Paper presented at the 2020 American Educational Research Association in San Fransisco, CA.)
+<p>
+
+<p class="hangingindent">
+Bae, C. & DeBusk-Lane, M., Engaging Students in Science: Measurement Invariance of Science Practices across Middle School Grades and Socioeconomic Subgroups (Paper presented at the 2017 Society for Research on Educational Effectiveness: SREE)
+<p>
+
+<p class="hangingindent">
+Bae, C., DeBusk-Lane, M., & Hayes, K., Student Engagement in Middle School Science: Findings across socioeconomic subgroups (Poster presented at the 2017 American Psychological Association in Washington, D.C.)
+<p>
+
+<p class="hangingindent">
+Bae, C., DeBusk-Lane, M., & Hayes, K., Student Engagement in Middle School Science: Findings across socioeconomic subgroups (Paper presented at the 2018 American Educational Research Association in New York, NY.)
+<p>
+
+<p class="hangingindent">
+Bae, C., DeBusk-Lane, M. Profiles of motivation in middle school science: Links to classroom structures and achievement (Poster presented at the 2018 American Psychological Association in San Francisco, CA.)
+<p>
+
+<p class="hangingindent">
+DeBusk-Lane, M. & Bae, C., Students’ Engagement in Middle School Science: Measurement Invariance and Group Mean Comparisons Across Language Subgroups.  (Poster presented at the 2017 Association for Psychological Science Convention, Boston, MA.)
+<p>
+
+<p class="hangingindent">
+DeBusk-Lane, M., Gnilka, P., Bae, C., Akcil, S., & Fee, H. Counselor Burnout Inventory: Factor Structure and Measurement Invariance across U.S. and Turkish Professional School Counselors. (Paper presented at the 2018 American Educational Research Association, New York, NY.)
+<p>
+
+<p class="hangingindent">
+DeBusk-Lane, M., Lester, A., Zumbrunn, S. Understanding Profiles of Writing Self-Efficacy through Mixed Methods Analysis. (Poster presented at the 2018 American Educational Research Association, New York, NY.)
+<p>
+
+<p class="hangingindent">
+Ekholm, E., Zumbrunn, S., & DeBusk-Lane, M., Clarifying an elusive construct: A systematic review of writing attitudes. (Paper presented at the 2017 American Educational Research Association, San Antonio, TX.)
+<p>
+
+<p class="hangingindent">
+Gnilka, P., DeBusk-Lane, M., Moate, R., Rice, K., Ashby, J., & Zumbrunn, S., Perfectionism and the HEXACO Model of Personality. (Paper presented at the 2017 Association for Psychological Science, Boston, MA.)
+<p>
+
+<p class="hangingindent">
+Jackson, L., DeBusk-Lane, M., Zumbrunn, S., & Baker, A., A Qualitative Study on the Collective Efficacy and Belongingness of Undergraduate Students (Paper presented at the 2016 American Psychological Association convention, Denver, CO.)
+<p>
+
+<p class="hangingindent">
+Lester, A. M., Chow, J., & DeBusk-Lane, M. Adolescent Participation in Afterschool Programs: A Systematic Review and Meta-analysis. (Poster presented at the 2018 American Psychological Association, San Fransisco, CA.)
+<p>
+
+<p class="hangingindent">
+Lester, A., DeBusk-Lane, M., Ekholm, E., Kunemund, R., Sterrett, B., Hope, S., … Zumbrunn, S.. Making schools more inclusive, inviting, and supportive: A community perspective. (Poster presented at Virginia Commonwealth University’s 2017 Racial Disproportionality, School Discipline, and Future Directions symposium.)
+<p>
+
+<p class="hangingindent">
+Lester, A., DeBusk-Lane, M., & Siegel-Hawley, G.. Investigating profiles of school level demographic change in relation to racial disproportionality in discipline. (Paper presented at the 2019 American Educational Research Association, Toronto, Canada)
+<p>
+
+<p class="hangingindent">
+Lester, A. M., DeBusk-Lane, M., & Zumbrunn, S. Investigating Profiles of Students’ Writing Self-Efficacy: A Mixed Methods Approach. (Poster presented at the 2018 American Psychological Association, San Fransisco, CA.)
+<p>
+
+<p class="hangingindent">
+Love, S., Rufer, L., DeBusk-Lane, M., & Zumbrunn, S., Exploring Student Athlete Motivation in Academics and Athletics.  (Paper presented at the 2016 American Psychological Association convention, Denver, CO.). 
+<p>
+
+<p class="hangingindent">
+Maese, E., Diego-Roosell, P., Srinivasan, R., Bikus, Z., DeBusk-Lane, M., Davoodi, T., Van Klinken, M., Foy, D., Food Insecurity in Context: Developing Mental Models of Local Knowledge in Halabja, Iraq. (Presentation to the American Public Health Association, 2022). 
+<p>
+
+<p class="hangingindent">
+Marrs, S. A., Zumbrunn, S. K., Jackson, L. O., Ekholm, E., DeBusk-Lane, M.. Exploring elementary students’ preferences for writing tasks. (Poster presented at the 2017 meeting of the American Psychological Association, Washington, D.C.)
+<p>
+
+<p class="hangingindent">
+Redifer, J. Bae, C., & DeBusk-Lane, M., Cognitive Load Mediates the Relationship Between Implicit Beliefs and Creative Thinking Scores. (Poster presented at the 2017 Association for Psychological Science, Boston, MA.)
+<p>
+
+<p class="hangingindent">
+Siegel-Hawley, G, DeBusk-Lane, M., Lester, A., Naff, D., & Palencia, V. Race, place, and exclusion: The metropolitan landscape of racial inequity in school discipline. (Paper presented at the 2019 American Educational Research Association, Toronto, Canada)
+<p>
+
+<p class="hangingindent">
+Sjogren, A., DeBusk-Lane, M., & Bae, C. Student engagement across contexts. (Symposium presented at the 2021 American Educational Research Association, Virtual Meeting).
+<p>
+
+<p class="hangingindent">
+Stringer, J., DeBusk-Lane, M., Zumbrunn, S., & Walsh, M., Academic self-concept: A qualitative approach. (Paper presented at the 2016 American Psychological Association convention, Denver, CO.).
+<p>
+
+<p class="hangingindent">
+Zumbrunn, S., Ekholm, E., Stringer, J., McKnight, K., & DeBusk-Lane, M., Exploring the experience of writing through student drawings. (Paper presented at the 2016 American Psychological Association convention, Denver, CO.).
+<p>
+
+<p class="hangingindent">
+Zumbrunn, S., Marrs, S., Jackson, L., Broda, M., Ekholm, E., & DeBusk-Lane, M., Student perceptions of teacher and peer enthusiasm for writing, writing attitudes, and writing self-regulation: A mixed methods study. (Paper presented at the meeting of the 2017 American Educational Research Association, San Antonio, TX.)
+<p>
+
+<p class="hangingindent">
+Zumbrunn, S., Marrs, S., Malmberg, L., Ekholm, E., Broda, M., & DeBusk-Lane, M., Individual differences and the development of multiple dimensions of writing self-efficacy. (Paper presented at the 2018 International Conference of the EARLI Special Interest Group on Writing, Antwerp, Belgium)
+<p>
+
+# **Peer Reviewed Reports**
+
+<p class="hangingindent">
+Siegel-Hawley, G., Tefera, A. A., Naff, D., Lester, A., Levy, R., Palencia, V., Parry, M., & DeBusk-Lane, M. (2019). Understanding racial inequities in school discipline across the Richmond region. Richmond, VA: Metropolitan Educational Research Consortium.
+<p>
+
+
+
+
+
+
+
+
+::: {.column-page-inset .text-center}
+```{=html}
+<a class="btn btn-outline-light", href="https://twitter.com/mldebusklane" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-twitter" role='img' aria-label='Twitter'></i>
+</a>
+<a class="btn btn-outline-light", href="https://github.com/debusklaneml" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-github" role='img' aria-label='Github'></i>
+</a>
+<a class="btn btn-outline-light", href="www.linkedin.com/in/debusklaneml" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-linkedin" role='img' aria-label='LinkedIn'></i>
+</a>
+
+<a class="btn btn-outline-light", href="mailto:mldebusklane@gmail.com" target="_blank" rel="noopener noreferrer">
+    <i class="ai bi-envelope" role='img' aria-label='email'></i>
+</a>
+```
+:::

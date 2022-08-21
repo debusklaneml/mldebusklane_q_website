@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>M. L. DeBusk-Lane, Ph.D.&nbsp;-</title>
+<title>M. L. DeBusk-Lane, Ph.D.&nbsp;- Research</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,6 +25,8 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -53,7 +55,37 @@ ul.task-list{list-style: none;}
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -73,7 +105,7 @@ ul.task-list{list-style: none;}
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">Home</a>
+    <a class="nav-link" href="./index.html">Home</a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./cv.html">CV</a>
@@ -85,7 +117,7 @@ ul.task-list{list-style: none;}
     <a class="nav-link" href="./blog.html">Blog</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./research.html">Research</a>
+    <a class="nav-link active" href="./research.html" aria-current="page">Research</a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -94,48 +126,77 @@ ul.task-list{list-style: none;}
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="LPA">LPA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Motivation">Motivation <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content page-columns page-full column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-
-
-<div class="grid">
-<div class="g-col-4">
-<p><img src="images/profile.jpeg" class="img-fluid" width="300"></p>
-</div>
-<div class="g-col-8">
-<p>I am a data geek, aviator, father, husband, and one who easily gets lost in figuring out just about anything.</p>
-<p>My personal research focuses on writing self-efficacy and feedback, emotional reactivity, working memory, and various other musings such as creativity and intelligence in the student population. I am also deeply interested in unique quantitative methods, mixtures models, measurement design, machine learning, and longitudinal growth.</p>
-<p>Currently, most of my work has centered around computational methods of natural language. These include word vector models, topic generation from word embeddings, and automated pipelines to develop such. My current interests/learnings in this space focus on zero-shot classification, transformer models, language inference and lexical prediction.</p>
-<p>All opinions my own.</p>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-<div class="column-page-inset text-center">
-<a class="btn btn-outline-light" ,="" href="https://twitter.com/mldebusklane" target="_blank" rel="noopener noreferrer">
-    <i class="bi bi-twitter" role="img" aria-label="Twitter"></i>
-</a>
-<a class="btn btn-outline-light" ,="" href="https://github.com/debusklaneml" target="_blank" rel="noopener noreferrer">
-    <i class="bi bi-github" role="img" aria-label="Github"></i>
-</a>
-<a class="btn btn-outline-light" ,="" href="www.linkedin.com/in/debusklaneml" target="_blank" rel="noopener noreferrer">
-    <i class="bi bi-linkedin" role="img" aria-label="LinkedIn"></i>
-</a>
-
-<a class="btn btn-outline-light" ,="" href="mailto:mldebusklane@gmail.com" target="_blank" rel="noopener noreferrer">
-    <i class="ai bi-envelope" role="img" aria-label="email"></i>
-</a>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Research</h1>
 </div>
 
 
 
-</main> <!-- /main -->
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="Motivation,LPA" data-listing-date-sort="1546318800000" data-listing-file-modified-sort="1660483652449" data-listing-reading-time-sort="1">
+<div class="thumbnail">
+<p><a href="./research/cb_kh_md_2019/cb_kh_md_2019.html"> <img src="./research/cb_kh_md_2019/featured.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./research/cb_kh_md_2019/cb_kh_md_2019.html">
+<h3 class="no-anchor listing-title">
+Profiles of middle school science teachers: Accounting for cognitive and motivational characteristics
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Motivation'); return false;">
+Motivation
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('LPA'); return false;">
+LPA
+</div>
+</div>
+<a href="./research/cb_kh_md_2019/cb_kh_md_2019.html">
+<div class="listing-description">
+<img src="featured.png" class="image-fluid mx-auto d-block img-fluid">
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./research/cb_kh_md_2019/cb_kh_md_2019.html">
+<div class="listing-date">
+Jan 1, 2019
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";

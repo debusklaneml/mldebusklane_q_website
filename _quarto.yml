@@ -9,8 +9,12 @@ website:
         text: Home
       - href: cv.qmd
         text: CV
+      - href: cv_2.qmd
+        text: CV_test
       - href: blog.qmd
         text: Blog
+      - href: research.qmd
+        text: Research
 
 format:
   html:
