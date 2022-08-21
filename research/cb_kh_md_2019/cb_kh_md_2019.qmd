@@ -1,5 +1,5 @@
 ---
-authors: [Christine Bae, Kathryn Hayes & M. L. DeBusk-Lane]
+authors: [Christine Bae & M. L. DeBusk-Lane]
 date: "2019-01-01"
 doi: "https://doi.org/10.1002/tea.21617"
 publishDate: "2019-01-01"
@@ -7,7 +7,7 @@ summary: A person-centered approach to examining MS science teachers' motivation
 categories:
   - Motivation
   - LPA
-title: "Profiles of middle school science teachers: Accounting for cognitive and motivational characteristics"
+title: "Middle school engagement profiles: Implications for motivation and achievement in science"
 image: /research/cb_kh_md_2019/featured.png
 ---
 

@@ -7,10 +7,8 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: cv.qmd
-        text: CV
       - href: cv_2.qmd
-        text: CV_test
+        text: CV
       - href: blog.qmd
         text: Blog
       - href: research.qmd
@@ -22,5 +20,4 @@ format:
     css: styles.css
     toc: true
 
-editor: visual
 

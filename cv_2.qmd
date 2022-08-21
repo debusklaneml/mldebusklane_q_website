@@ -15,11 +15,14 @@ toc-title: Sections
 Email: mldebusklane\@gmail.com\
 *Crafted: Aug, 2022*
 
+<hr size="6">
+
 # **Education**
 
 -   Doctor of Philosophy (Educational Psychology), Virginia Commonwealth University: Advisor: Dr. Sharon Zumbrunn
     -   Dissertation Title: *Variable- and Person-Centered Approaches to Examining Construct-Relevant Psychometric Multidimensionality in Writing Self-Efficacy.*
 -   Bachelor of Science in Psychology, Pennsylvania State University - with High Distinction.
+<hr size="4">
 
 # **Peer Reviewed Articles** 
 (alphabetical)
@@ -62,6 +65,7 @@ Zumbrunn, S., Ekholm, E., Stringer, J. K., McKnight, K., & DeBusk-Lane, M. (2017
 <p class="hangingindent">
 Zumbrunn, S., Marrs, S., Broda, M., Ekholm, E., DeBusk-Lane, M., Jackson, L. (2019). Toward a more complete understanding of elementary writing attitudes: A mixed methods study of elementary students. AERA Open, 5(2), 1-16.
 <p>
+<hr size="4">
 
 # **Peer Reviewed Presentations** 
 (alphabetical)
@@ -165,6 +169,7 @@ Zumbrunn, S., Marrs, S., Jackson, L., Broda, M., Ekholm, E., & DeBusk-Lane, M., 
 <p class="hangingindent">
 Zumbrunn, S., Marrs, S., Malmberg, L., Ekholm, E., Broda, M., & DeBusk-Lane, M., Individual differences and the development of multiple dimensions of writing self-efficacy. (Paper presented at the 2018 International Conference of the EARLI Special Interest Group on Writing, Antwerp, Belgium)
 <p>
+<hr size="4">
 
 # **Peer Reviewed Reports**
 
