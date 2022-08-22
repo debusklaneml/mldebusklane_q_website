@@ -32,9 +32,6 @@ All opinions my own. :) This is a test here.
 <a class="btn btn-outline-light", href="https://linkedin.com/in/debusklaneml" target="_blank" rel="noopener noreferrer">
     <i class="bi bi-linkedin" role='img' aria-label='LinkedIn'></i>
 </a>
-<a class="btn btn-outline-light", href="https://linkedin.com/in/debusklaneml" target="_blank" rel="noopener noreferrer">
-    <i class="bi bi-linkedin" role='img' aria-label='LinkedIn'></i>
-</a>
 <a class="btn btn-outline-light", href="mailto:mldebusklane@gmail.com" target="_blank" rel="noopener noreferrer">
     <i class="ai bi-envelope" role='img' aria-label='email'></i>
 </a>
