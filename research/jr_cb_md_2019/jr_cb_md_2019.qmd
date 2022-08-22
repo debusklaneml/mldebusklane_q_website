@@ -1,0 +1,24 @@
+---
+title: "Implicit Theories, Working Memory, and Cognitive Load: Impacts on Creative Thinking"
+authors: [Jenni Redifer, Christine Bae & M. L. DeBusk-Lane]
+date: "2019-01-01"
+doi: "https://doi.org/10.1177/2158244019835919"
+publishDate: "2019-01-02"
+summary: Can a student's perception of their creative abilities be changed?
+categories:
+  - Creativity
+  - Cognitive Load
+  - Implicit Theories
+  - Intelligence
+image: /research/jr_cb_md_2019/featured.png
+---
+
+::: {.column-page-inset .text-center}
+```{=html}
+<a class="btn btn-outline-danger btn-lg" href="/research/jr_cb_md_2019/jr_cb_md_2019.pdf" target="_blank" rel="noopener">PDF</a>
+```
+:::
+
+![](featured.png){.image-fluid .mx-auto .d-block}
+
+Creative thinking shares many characteristics with traditional complex tasks. We investigated whether implicit theories of creativity would affect creative thinking in a way similar to the impact of implicit theories of intelligence on academic tasks. We altered participants’ theories of creativity to be either more incremental or more entity-like. We also examined the impact of working memory (WM) and cognitive load on creative thinking. Cognitive load fully mediated the relationship between implicit theories and creative thinking, with more incremental beliefs linked to lower cognitive load. In addition, cognitive load partially mediated the relationship between WM and creative thinking. Our results support prior research showing that creative thinking draws on cognitive mechanisms similar to those utilized by other complex tasks, but the impact of implicit theories on creative thinking differs from their effect on traditional academic tasks.

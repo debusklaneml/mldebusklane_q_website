@@ -1,0 +1,20 @@
+---
+title: "Student Experiences With Writing: Taking the Temperature of the Classroom"
+authors: [Sharon Zumbrunn, Eric Ekholm, J.K. Stringer, Kimberly McKnight & M. L. DeBusk-Lane]
+date: "2017-01-01"
+doi: "https://doi.org/10.1002/trtr.1574"
+publishDate: "2017-01-01"
+summary: A look at students' writing attitudes through drawings.
+categories:
+  - Motivation
+image: /research/sz_ee_js_km_md_2017/featured.png
+---
+::: {.column-page-inset .text-center}
+```{=html}
+<a class="btn btn-outline-danger btn-lg" href="/research/sz_ee_js_km_md_2017/sz_ee_js_km_md_2017.pdf" target="_blank" rel="noopener">PDF</a>
+```
+:::
+
+![](featured.png){.image-fluid .mx-auto .d-block}
+
+"Students’ literacy experiences and beliefs can have profound effects on their motivation, engagement, and learning. The authors explore tools that teachers can use to better understand students’ writing experiences and beliefs."
