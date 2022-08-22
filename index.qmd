@@ -15,7 +15,7 @@ My personal research focuses on writing self-efficacy and feedback, emotional re
 
 Currently, most of my work has centered around computational methods of natural language. These include word vector models, topic generation from word embeddings, and automated pipelines to develop such. My current interests/learnings in this space focus on zero-shot classification, transformer models, language inference and lexical prediction.
 
-All opinions my own. :) This is a test here. 
+All opinions my own. 
 :::
 :::
 
