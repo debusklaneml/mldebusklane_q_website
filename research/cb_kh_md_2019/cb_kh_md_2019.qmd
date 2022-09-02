@@ -11,6 +11,12 @@ categories:
 image: /research/cb_kh_md_2019/featured.png
 ---
 
+::: {.column-page-inset .text-center}
+```{=html}
+<a class="btn btn-outline-danger btn-lg" href="/research/cb_kh_md_2019/cb_kh_md_2019.pdf" target="_blank" rel="noopener">PDF</a>
+```
+:::
+
 ![](featured.png){.image-fluid .mx-auto .d-block}
 
 
