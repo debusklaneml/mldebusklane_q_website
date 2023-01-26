@@ -1,0 +1,43 @@
+---
+title: 'Simulation: Part 0'
+date: '2023-01-01'
+
+categories: 
+  - Code
+  - Simulation
+  - R
+
+output: 
+  html_document:
+    theme: journal
+    highlight: cosmo
+---
+
+```{r}
+#| echo: false
+#| output: false
+library(tidyverse)
+library(quarto)
+```
+
+This blog post will be the first in a series that will explore how social scientists, or at least those that tend to span across and into more traditional data science, can leverage and employ simulation techniques into their workflow. At the least, this series will introduce the reader to what statistical simulation is, the very basics, and how it can be used to better understand how a variety of statistical methods function across broad data situations. 
+
+# What is statistical simulation and why should you care? 
+
+In our case, it's the process of making fake data in a programmatic way. 
+
+For instance, if I wanted to understand how well a simple linear regression (OLS) functioned across different, often anticipated, data situations, I could simulate those situations (the data) and then compute how well it did. 
+
+
+Using that as a simple example, lets do just that:
+
+
+$$
+y = \beta_0 + x_1\beta_1 + \varepsilon
+$$
+In its simplest form, some variable $x_1$ is linearly related to $y$ given some constant influence of $\beta_1$. Said another way, 
+
+```{r}
+data <- rnorm(10000, 2.5)
+```
+

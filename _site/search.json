@@ -102,6 +102,13 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Sudoku Solver in R\n\n\n\n\n\n\n\nCode\n\n\nR\n\n\n\n\n\n\n\n\n\n\n\nFeb 28, 2020\n\n\nM. L. DeBusk-Lane\n\n\n\n\n\n\n\n\ngroup_walk\n\n\n\n\n\n\n\nCode\n\n\nR\n\n\n\n\n\n\n\n\n\n\n\nFeb 25, 2020\n\n\nM. L. DeBusk-Lane\n\n\n\n\n\n\nNo matching items"
+    "text": "Simulation: Part 0\n\n\n\n\n\n\n\nCode\n\n\nSimulation\n\n\nR\n\n\n\n\n\n\n\n\n\n\n\nJan 1, 2023\n\n\nM. L. DeBusk-Lane\n\n\n\n\n\n\n\n\nSudoku Solver in R\n\n\n\n\n\n\n\nCode\n\n\nR\n\n\n\n\n\n\n\n\n\n\n\nFeb 28, 2020\n\n\nM. L. DeBusk-Lane\n\n\n\n\n\n\n\n\ngroup_walk\n\n\n\n\n\n\n\nCode\n\n\nR\n\n\n\n\n\n\n\n\n\n\n\nFeb 25, 2020\n\n\nM. L. DeBusk-Lane\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/simulation/simulation.html",
+    "href": "posts/simulation/simulation.html",
+    "title": "Simulation: Part 0",
+    "section": "",
+    "text": "This blog post will be the first in a series that will explore how social scientists, or at least those that tend to span across and into more traditional data science, can leverage and employ simulation techniques into their workflow. At the least, this series will introduce the reader to what statistical simulation is, the very basics, and how it can be used to better understand how a variety of statistical methods function across broad data situations.\n\nWhat is statistical simulation and why should you care?\nIn our case, it’s the process of making fake data in a programmatic way.\nFor instance, if I wanted to understand how well a simple linear regression (OLS) functioned across different, often anticipated, data situations, I could simulate those situations (the data) and then compute how well it did.\nUsing that as a simple example, lets do just that:\n\\[\ny = \\beta_0 + x_1\\beta_1 + \\varepsilon\n\\] In its simplest form, some variable \\(x_1\\) is linearly related to \\(y\\) given some constant influence of \\(\\beta_1\\). Said another way,\n\ndata <- rnorm(10000, 2.5)\n\n\n\n\n\nReusehttps://creativecommons.org/licenses/by/4.0/CitationBibTeX citation:@online{l.debusk-lane2023,\n  author = {M. L. DeBusk-Lane},\n  title = {Simulation: {Part} 0},\n  date = {2023-01-01},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nM. L. DeBusk-Lane. 2023. “Simulation: Part 0.” January 1,\n2023."
   }
 ]
