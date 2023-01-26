@@ -18,8 +18,6 @@ knitr::opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE,
                       fig.width = 8, fig.height = 7)
 ```
 
-Coming off of the wild excursion of getting Python markdown through RStudio's knitr (which didnt really work out well... I just exported a Jupyter Lab markdown and arranged it through my Hugo build), this is a brief vantage of how we might write the sudoku puzzle solver in the R language. Here we go.
-
 Using the basic sudoku puzzle from wikipedia [HERE](https://en.wikipedia.org/wiki/Sudoku), we'll start to build this out.
 
 ```{r echo=FALSE, fig.align = 'center', fig.link='https://en.wikipedia.org/wiki/Sudoku'}
