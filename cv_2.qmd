@@ -47,9 +47,6 @@ Bae, C. L., DeBusk-Lane, M., & Lester, A. M. (2020). Engagement profiles of elem
 <p>
 
 <p class="hangingindent">
-<<<<<<< HEAD
-DeBusk-Lane, M., Zumbrunn, S., Bae, C., Broda, M., Bruning, R., & Sjogren, A. (2023). Variable- and Person-Centered Approaches to Examining Construct-Relevant Multidimensionality in Writing Self-Efficacy. Manuscript submitted for publication. 
-=======
 Cabrera, L., Bae, C., DeBusk-Lane, M. (2023). A mixed methods study of middle students’ science motivation and engagement profiles. Learning and Individual Differences, 103, https://doi.org/ 10.1016/j.lindif.2023.102281
 <p>
 
