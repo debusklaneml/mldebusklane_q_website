@@ -13,7 +13,7 @@ toc-title: Sections
 # **Morgan 'Les' DeBusk-Lane, Ph.D.** {.unnumbered .unlisted}
 
 Email: mldebusklane\@gmail.com\
-*Crafted: Aug, 2022*
+*Crafted: March, 2023*
 
 <hr size="6">
 
@@ -47,7 +47,15 @@ Bae, C. L., DeBusk-Lane, M., & Lester, A. M. (2020). Engagement profiles of elem
 <p>
 
 <p class="hangingindent">
+<<<<<<< HEAD
 DeBusk-Lane, M., Zumbrunn, S., Bae, C., Broda, M., Bruning, R., & Sjogren, A. (2023). Variable- and Person-Centered Approaches to Examining Construct-Relevant Multidimensionality in Writing Self-Efficacy. Manuscript submitted for publication. 
+=======
+Cabrera, L., Bae, C., DeBusk-Lane, M. (2023). A mixed methods study of middle students’ science motivation and engagement profiles. Learning and Individual Differences, 103, https://doi.org/ 10.1016/j.lindif.2023.102281
+<p>
+
+<p class="hangingindent">
+DeBusk-Lane, M., Zumbrunn, S., Bae, C., Broda, M., Bruning, R., & Sjogren, A. (2022). Variable- and Person-Centered Approaches to Examining Construct-Relevant Multidimensionality in Writing Self-Efficacy. Frontiers in Psychology, 14, https://doi.org/10.3389/fpsyg.2023.1091894
+>>>>>>> 9a1b05f4185c3e67a0c29b31bc475c42420188fa
 <p>
 
 <p class="hangingindent">

@@ -1,0 +1,16 @@
+{
+  "hash": "1e55ce9b895e3cc830a0139583c60174",
+  "result": {
+    "markdown": "---\ntitle: 'Simulation: Part 0'\ndate: '2023-01-01'\n\ncategories: \n  - Code\n  - Simulation\n  - R\n\noutput: \n  html_document:\n    theme: journal\n    highlight: cosmo\n---\n\n::: {.cell}\n\n:::\n\n\nThis blog post will be the first in a series that will explore how social scientists, or at least those that tend to span across and into more traditional data science, can leverage and employ simulation techniques into their workflow. At the least, this series will introduce the reader to what statistical simulation is, the very basics, and how it can be used to better understand how a variety of statistical methods function across broad data situations. \n\n# What is statistical simulation and why should you care? \n\nIn our case, it's the process of making fake data in a programmatic way. \n\nFor instance, if I wanted to understand how well a simple linear regression (OLS) functioned across different, often anticipated, data situations, I could simulate those situations (the data) and then compute how well it did. \n\n\nUsing that as a simple example, lets do just that:\n\n\n$$\ny = \\beta_0 + x_1\\beta_1 + \\varepsilon\n$$\nIn its simplest form, some variable $x_1$ is linearly related to $y$ given some constant influence of $\\beta_1$. Said another way, \n\n\n::: {.cell}\n\n```{.r .cell-code}\ndata <- rnorm(10000, 2.5)\n```\n:::\n\n\nThere is more to come... this is a work in progress. \n",
+    "supporting": [
+      "simulation_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
