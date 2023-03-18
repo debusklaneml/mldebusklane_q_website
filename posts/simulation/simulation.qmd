@@ -41,3 +41,4 @@ In its simplest form, some variable $x_1$ is linearly related to $y$ given some 
 data <- rnorm(10000, 2.5)
 ```
 
+There is more to come... this is a work in progress. 
