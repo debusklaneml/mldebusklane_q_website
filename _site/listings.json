@@ -14,6 +14,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/simulation/simulation.html",
       "/posts/soduku_R/sudoku_R.html",
       "/posts/groupwalk/groupwalk.html"
     ]
