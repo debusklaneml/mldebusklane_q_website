@@ -11,20 +11,26 @@ output:
   html_document:
     theme: journal
     highlight: cosmo
+    
+engine: knitr
+embed-resources: true
 ---
 
 ```{r}
 #| echo: false
-#| output: false
-library(tidyverse)
-library(quarto)
+#| output: true
+# Description of file here
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, explore, tidylog, skimr, reticulate)
+
 ```
 
 This blog post will be the first in a series that will explore how social scientists, or at least those that tend to span across and into more traditional data science, can leverage and employ simulation techniques into their workflow. At the least, this series will introduce the reader to what statistical simulation is, the very basics, and how it can be used to better understand how a variety of statistical methods function across broad data situations. 
 
 # What is statistical simulation and why should you care? 
 
-In our case, it's the process of making fake data in a programmatic way. 
+In our case, it's the process of making fake data in a programmatic way. Statistical simulation is a powerful tool that allows us to create and analyze data in a controlled environment. By simulating data, we can explore the behavior of statistical models under various conditions—conditions that may be rare or difficult to observe in the real world. This is particularly useful when working with complex models or when trying to understand the impact of different data characteristics on statistical inference.
 
 For instance, if I wanted to understand how well a simple linear regression (OLS) functioned across different, often anticipated, data situations, I could simulate those situations (the data) and then compute how well it did. 
 
@@ -38,7 +44,110 @@ $$
 In its simplest form, some variable $x_1$ is linearly related to $y$ given some constant influence of $\beta_1$. Said another way, 
 
 ```{r}
-data <- rnorm(10000, 2.5)
+library(tidyverse)
+
+set.seed(123) # For reproducibility
+n <- 10000
+beta_0 <- 1.5
+beta_1 <- 2.0
+sigma <- 1.0
+
+x_1 <- rnorm(n, mean = 2.5, sd = 1.0)
+epsilon <- rnorm(n, mean = 0, sd = sigma)
+y <- beta_0 + beta_1 * x_1 + epsilon
+
+simulated_data <- tibble(x_1 = x_1, y = y)
 ```
 
-There is more to come... this is a work in progress. 
+To get a better sense of this relationship, it's always great to visualize it. 
+
+```{r}
+#| warning: false
+ggplot(simulated_data, aes(x = x_1, y = y)) +
+  geom_point(alpha = 0.5) +
+  geom_abline(intercept = beta_0, slope = beta_1, color = "blue", size = 1) +
+  theme_minimal() +
+  labs(title = "Simulated Data for OLS",
+       x = "Independent Variable (x_1)",
+       y = "Dependent Variable (y)")
+```
+
+Now we can estimate a model. 
+```{r}
+ols_model <- lm(y ~ x_1, data = simulated_data)
+summary(ols_model)
+```
+ 
+Given the model, we can now compare how well our model fits the conditions for which we simulated the data. Given the variability we weaved in, you can see that we approximate the parameters we established within the simulation function above. 
+
+# Utility of Simulation 
+
+We can adjust the simulation parameters to see how well any method, in this case OLS, handles new parameters that change how the data interacts. 
+
+```{r}
+sigma_new <- 2.0
+epsilon_new <- rnorm(n, mean = 0, sd = sigma_new)
+y_new <- beta_0 + beta_1 * x_1 + epsilon_new
+
+simulated_data_new <- tibble(x_1 = x_1, y = y_new)
+ols_model_new <- lm(y ~ x_1, data = simulated_data_new)
+summary(ols_model_new)
+
+```
+
+In this case, we can compare the models to see how well OLS handles an increase in error variance. 
+
+# Next Steps
+In the next post, we'll look at how we can simulation non-linear relationships. Stay tuned. 
+
+# Python Version
+If you're curious, this would be the python rendition
+
+```{python}
+#| output: false
+#| eval: false
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+
+# Set seed for reproducibility
+np.random.seed(123)
+
+# Parameters
+n = 10000
+beta_0 = 1.5
+beta_1 = 2.0
+sigma = 1.0
+
+# Simulate independent variable x_1
+x_1 = np.random.normal(2.5, 1.0, n)
+# Simulate error term
+epsilon = np.random.normal(0, sigma, n)
+# Simulate dependent variable y
+y = beta_0 + beta_1 * x_1 + epsilon
+
+# Plot the simulated data and the true regression line
+plt.figure(figsize=(10, 6))
+plt.scatter(x_1, y, alpha=0.5, label='Simulated data')
+plt.plot(x_1, beta_0 + beta_1 * x_1, 'r', label='True regression line')
+plt.title('Simulated Data for OLS')
+plt.xlabel('Independent Variable (x_1)')
+plt.ylabel('Dependent Variable (y)')
+plt.legend()
+plt.show()
+
+# Add a constant to the independent variable to model the intercept
+x_1_with_const = sm.add_constant(x_1)
+
+# Fit OLS regression model
+model = sm.OLS(y, x_1_with_const)
+results = model.fit()
+
+# Print out the statistics
+print(results.summary())
+
+
+```
+
