@@ -1,0 +1,36 @@
+---
+title: 'Baseball Time Series Analysis'
+date: '2023-11-04'
+
+categories: 
+  - Code
+  - Time Series
+  - R
+
+output: 
+  html_document:
+    theme: journal
+    highlight: cosmo
+    
+engine: knitr
+embed-resources: true
+---
+
+# Overview
+
+This post will dive into the a bit of time-series analysis as it relates to a couple baseball teams from the 2023 season. I know we're fresh on the heals of the World Series, but this will look at the longitudinal trends and predictions of both the Astros and the Rangers. This will also use the `timetk` package, just to get familiar with it. I've heard good things. 
+
+```{r}
+#| label: setup
+# Description of file here
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, explore, tidylog, skimr, baseballr)
+```
+
+```{r}
+# cols: https://www.retrosheet.org/gamelogs/glfields.txt
+gl2022 <- read.csv("~/Downloads/alldata/gamelogs/gl2022.txt", header=FALSE)
+
+```
+
