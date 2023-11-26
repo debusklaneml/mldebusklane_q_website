@@ -25,12 +25,31 @@ This post will dive into the a bit of time-series analysis as it relates to a co
 # Description of file here
 
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(tidyverse, explore, tidylog, skimr, baseballr)
+pacman::p_load(tidyverse, explore, tidylog, skimr, here, arrow, timetk)
 ```
 
 ```{r}
 # cols: https://www.retrosheet.org/gamelogs/glfields.txt
-gl2022 <- read.csv("~/Downloads/alldata/gamelogs/gl2022.txt", header=FALSE)
+# games <- read_csv("~/Desktop/bb/archive-2/games.csv")
+# games_2021 <- games %>% 
+#   filter(date > '2021-01-01')
+# write_parquet(games_2021, here('posts', 'baseball', 'data', 'games_2021.gz.parquet'), compression = 'gzip')
+games_2021 <- read_parquet(here('posts', 'baseball', 'data', 'games_2021.gz.parquet'))
 
+```
+
+First, let's get things set up for time-series analyses. 
+
+```{r}
+games_2021 %>% 
+  mutate(year = year(date)) %>% 
+  filter(year == 2022) %>% 
+  plot_time_series(date, attendance)
+```
+
+```{r}
+games_2021 %>% 
+  filter(date > '2022-01-01') %>% 
+  plot_time_series(date, visitor_rbi)
 ```
 
