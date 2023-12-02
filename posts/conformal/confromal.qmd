@@ -154,3 +154,107 @@ Ok, let's build out the basic steps for conformal prediction:
 7.  Output Prediction Intervals: We can then generate a prediction interval.
 
 In its simplest form, conformal prediction is a statistical technique that provides a measure of certainty for machine learning model predictions by generating prediction intervals, using the conformity of new instances to a calibration set to indicate how likely these predictions are to be accurate. This method leverages the distribution of conformity scores from a calibration set to assess the reliability of predictions for new data.
+
+Because we've already trained our two models, we now just need to leverage the validation set.
+
+```{r}
+set.seed(123)
+lm_validation_scores <- val %>%
+  mutate(
+    prediction = predict(lm_mod, .),
+    error = abs(purchase_likelihood - prediction),
+    conformity_score = rank(-error),
+    conformity_score_norm = conformity_score / nrow(.)
+  )
+
+
+quant <- quantile(lm_validation_scores$error, probs = 0.95)
+
+lm_validation_scores %>% 
+  ggplot(aes(x = error)) + 
+  geom_histogram() + 
+  geom_vline(xintercept = quant)
+
+
+```
+
+```{r}
+spline_validation_scores <- val %>%
+  mutate(
+    prediction = predict(spline_mod, .),
+    error = abs(purchase_likelihood - prediction),
+    conformity_score = rank(-error)
+  )
+
+quant <- quantile(spline_validation_scores$error, probs = 0.95)
+
+spline_validation_scores %>% 
+  ggplot(aes(x = error)) + 
+  geom_histogram() + 
+  geom_vline(xintercept = quant)
+```
+
+
+Now we can create a function that uses all the information we have to generate confromal intervals. 
+
+```{r}
+# Function to calculate the conformal prediction interval for new data without y values
+conformal_interval <- function(new_data, model, calibration_set, alpha = 0.95) {
+  # Predict y values for the calibration set
+  validation_scores <- calibration_set %>%
+    mutate(
+      prediction = predict(model, .),
+      error = abs(purchase_likelihood - prediction)
+    )
+  
+  quantile <- 1 - alpha
+  error_quantile <- quantile(validation_scores$error, probs = 0.95)
+
+  # # Predict y values for the new data
+  
+  new_preds <- new_data %>% 
+    mutate(predictions = predict(model, .),
+           .lower = predictions - error_quantile,
+           .upper = predictions + error_quantile
+           )
+  
+  
+  
+  #
+  # # Construct the prediction intervals
+  # intervals <- tibble(
+  #   prediction = new_predictions,
+  #   lower_bound = new_predictions - error_margin_upper,
+  #   upper_bound = new_predictions - error_margin_lower
+  # )
+  #
+  # return(intervals)
+}
+
+result <- conformal_interval(new_data = test, model = lm_mod, calibration_set = val, alpha = 0.05)
+result
+```
+
+```{r}
+
+```
+
+
+Now, we can test it for a series of predictor values to understand error generation. In this case, we'll just use the test data
+
+
+
+```{r}
+library(workflows)
+library(dplyr)
+library(parsnip)
+library(rsample)
+library(tune)
+library(modeldata)
+
+set.seed(2)
+sim_train <- sim_regression(500)
+sim_cal <- sim_regression(200)
+sim_new <- sim_regression(5) %>% select(-outcome)
+```
+
