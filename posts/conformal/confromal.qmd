@@ -1,0 +1,156 @@
+---
+title: "Conformal Prediction"
+date: '2023-11-26'
+
+categories: 
+  - Code
+  - R
+
+output: 
+  html_document:
+    theme: journal
+    highlight: zenburn
+---
+
+```{r}
+
+# Description of file here
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, explore, tidylog, skimr, plotly, performance, mgcv, patchwork)
+```
+
+Conformal prediction stands at the forefront of modern data analysis, offering a robust way to assess the reliability of predictive models. This technique is particularly valuable in scenarios where accurate and reliable predictions are crucial, such as in healthcare, finance, and various other business cases. In most real work cases, the error of any given model is not uniform or constant across the range of possible predictions. Therefore, it's important to take this into account when using a model to predict.
+
+Conformal prediction is notably non-parametric and distribution-free, meaning it is not constrained by the underlying distribution of your data. This characteristic lends it exceptional flexibility, making it applicable across various types of models. It is effective for both classification and regression problems, regardless of the specific model used.
+
+Despite aligning with the frequentist perspective in quantifying uncertainty, conformal prediction provides a robust guarantee regarding the error bounds. It ensures that these bounds will encompass the true outcome within a specified confidence level. This makes it a reliable tool for making predictions with quantifiable certainty.
+
+Lets start by generating data often found in the real world. These data will produce a probability that ranges from 0 to 1. This will let me flip this to a classification problem later.
+
+```{r}
+set.seed(123)  # for reproducibility
+
+# Simulating the dataset
+n <- 10000  # number of observations
+data <- tibble(
+  age = runif(n, 18, 70),  # random ages between 18 and 70
+  income = runif(n, 30000, 100000),  # random income between 30k and 100k
+)
+
+# Create a non-linear relationship for the target variable
+sim_data <- data %>%
+  mutate(
+    purchase_likelihood = 0.5 * sin(age / 10) + 0.3 * log(income / 30000) + rnorm(n, 0, 0.2),
+    purchase = as.factor(ifelse(purchase_likelihood > 0.5, 1, 0))  # binary target variable
+  )
+```
+
+```{r}
+# Boxplot for Age and Purchase
+ggplot(sim_data, aes(x = purchase, y = age, fill = purchase)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of Age by Purchase",
+       x = "Purchase",
+       y = "Age") +
+  scale_fill_manual(values = c("0" = "lightblue", "1" = "salmon")) +
+  theme_minimal()
+
+# Boxplot for Income and Purchase
+ggplot(sim_data, aes(x = purchase, y = income, fill = purchase)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of Income by Purchase",
+       x = "Purchase",
+       y = "Income") +
+  scale_fill_manual(values = c("0" = "lightblue", "1" = "salmon")) +
+  theme_minimal()
+
+# Density Plot for Age and Purchase
+ggplot(sim_data, aes(x = age, fill = purchase)) +
+  geom_density(alpha = 0.6) +
+  labs(title = "Density Plot of Age by Purchase",
+       x = "Age",
+       y = "Density") +
+  scale_fill_manual(values = c("0" = "lightblue", "1" = "salmon")) +
+  theme_minimal()
+
+# Density Plot for Income and Purchase
+ggplot(sim_data, aes(x = income, fill = purchase)) +
+  geom_density(alpha = 0.6) +
+  labs(title = "Density Plot of Income by Purchase",
+       x = "Income",
+       y = "Density") +
+  scale_fill_manual(values = c("0" = "lightblue", "1" = "salmon")) +
+  theme_minimal()
+
+```
+
+Cool, let's see how well a few simple models do.
+
+But first, we must split it up:
+
+This is important for common model performance checking, but also because we'll need the validation set for conformal prediction later.
+
+```{r}
+split <- rsample::initial_validation_split(sim_data)
+train <- rsample::training(split)
+test <- rsample::testing(split)
+val <- rsample::validation(split)
+```
+
+```{r}
+lm_mod <- lm(purchase_likelihood ~ age + income, data = train)
+spline_mod <- gam(purchase_likelihood ~ s(age) + income, data = train)
+
+compare_performance(lm_mod, spline_mod)
+```
+
+```{r}
+test_preds <- test %>% 
+  mutate(lm_predictions = predict(lm_mod, newdata = .),
+         spline_predictions = predict(spline_mod, newdata = .))
+
+lm_metrics <- test_preds %>% 
+  yardstick::metrics(truth = purchase_likelihood, estimate = lm_predictions) %>% 
+  mutate(type = 'lm_metrics')
+spline_metrics <- test_preds %>% 
+  yardstick::metrics(truth = purchase_likelihood, estimate = spline_predictions) %>% 
+  mutate(type = 'spline_metrics')
+
+perf <- bind_rows(lm_metrics, spline_metrics)
+```
+
+Cool, let's see how this looks over the range of test truth and estimates.
+
+```{r}
+lm_plot <- test_preds %>% 
+  ggplot(aes(x = lm_predictions, y = purchase_likelihood)) + 
+  geom_point() +
+  theme_minimal()
+
+spline_plot <- test_preds %>% 
+  ggplot(aes(x = spline_predictions, y = purchase_likelihood)) + 
+  geom_point() +
+  theme_minimal()
+
+plots <- lm_plot + spline_plot 
+plots
+```
+
+Ok, let's build out the basic steps for conformal prediction:
+
+1.  Data Split: We've already done this earlier. The validation set, or calibration as some people call it, is important in this process. Make sure you have that.
+
+2.  Model Training: Train a model. In this case, we'll train both the linear model and the GAM.
+
+3.  Conformity Measure: We'll need to define a conformity measure. This is a function that essentially assigns a numerical score to each instance, which reflects how well the estimate 'conforms' to the other instances in the validation set. Typically this is just the 'distance' or error between your model's prediction and the validation set. However, this could be anything for your specific problem.
+
+4.  Conformity Score: This is the computation of error given the measure in step 3.
+
+5.  Prediction: For any new instance that you'd like to predict, you use your model to run prediction and then we'll move to compute a conformity score.
+
+6.  Confidence Level Determination: Given your new instances conformity score, we'll now compare it to the distribution of scores derived from the validation set to determine the confidence level.
+
+7.  Output Prediction Intervals: We can then generate a prediction interval.
+
+In its simplest form, conformal prediction is a statistical technique that provides a measure of certainty for machine learning model predictions by generating prediction intervals, using the conformity of new instances to a calibration set to indicate how likely these predictions are to be accurate. This method leverages the distribution of conformity scores from a calibration set to assess the reliability of predictions for new data.
