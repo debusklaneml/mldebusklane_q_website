@@ -18,6 +18,7 @@ output:
 
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse, explore, tidylog, skimr, plotly, performance, mgcv, patchwork, quantregForest)
+
 ```
 
 Conformal prediction stands at the forefront of modern data analysis, offering a robust way to assess the reliability of predictive models. This technique is particularly valuable in scenarios where accurate and reliable predictions are crucial, such as in healthcare, finance, and various other business cases. In most real work cases, the error of any given model is not uniform or constant across the range of possible predictions. Therefore, it's important to take this into account when using a model to predict.
@@ -69,6 +70,26 @@ sim_data %>%
   ggplot(aes(x, y)) + 
   geom_point(alpha = 1 / 10)
 ```
+```{r}
+# This is from the tidymodels example here: https://www.tidymodels.org/learn/models/conformal-regression/
+# 
+
+make_variable_data <- function(n, std_dev = 1 / 5) {
+  tibble(x = runif(n, min = -1)) %>%
+    mutate(
+      y = (x^3) + 2 * exp(-6 * (x - 0.3)^2),
+      y = y + rnorm(n, sd = std_dev * abs(x))
+    )
+}
+
+n <- 10000
+set.seed(8383)
+sim_data <- make_variable_data(n)
+
+sim_data %>% 
+  ggplot(aes(x, y)) + 
+  geom_point(alpha = 1 / 10)
+```
 
 Cool, let's see how well a few simple models do.
 
@@ -110,12 +131,12 @@ Cool, let's see how this looks over the range of test truth and estimates.
 
 ```{r}
 lm_plot <- test_preds %>% 
-  ggplot(aes(x = lm_predictions, y = y)) + 
+  ggplot(aes(x = x, y = lm_predictions)) + 
   geom_point() +
   theme_minimal()
 
 spline_plot <- test_preds %>% 
-  ggplot(aes(x = spline_predictions, y = y)) + 
+  ggplot(aes(x = x, y = spline_predictions)) + 
   geom_point() +
   theme_minimal()
 
@@ -204,6 +225,7 @@ conformal_interval <- function(new_data, model, calibration_set, alpha = 0.95) {
 lm_result <- conformal_interval(new_data = test, model = lm_mod, calibration_set = val, alpha = 0.05)
 lm_result
 ```
+Not sure this viz is useful:
 
 ```{r}
 lm_result %>% 
@@ -242,6 +264,7 @@ Let's take a look at the spline model.
 spline_result <- conformal_interval(new_data = test, model = spline_mod, calibration_set = val, alpha = 0.05)
 
 ```
+Not sure this is useful:
 
 ```{r}
 spline_result %>% 
@@ -262,13 +285,24 @@ spline_result %>%
     color = "grey", # Change color of error bars
     alpha = 0.2
   ) + # Adjust transparency
-  ggtitle("Age vs Predictions with Conformal Prediction Intervals") + # Add a title
+  ggtitle("X vs Predictions with Conformal Prediction Intervals") + # Add a title
   labs(x = "Age", y = "Predicted Value") + # Label the axes
   theme_minimal() + # Apply a minimal theme
   theme(
     plot.title = element_text(hjust = 0.5), # Center the title
     text = element_text(size = 12)
   ) # Adjust text size
+```
+
+
+```{r}
+spline_result %>% 
+  slice_sample(n = 2000) %>% 
+  ggplot(aes(x)) +
+  geom_point(aes(y = predictions), color = 'blue') +
+  geom_point(aes(y = y), alpha = 1/10) + 
+  geom_ribbon(aes(ymin = .lower, ymax = .upper), 
+              col = "#D95F02", linewidth = 3 / 4, fill = NA)
 ```
 
 Also plausible. But in truth, there is nothing super fancy about estimating error from the 95% quantile perspective. In other words, we assume that all the error for each point that could be predicted might be found in this span of error if we did this forever. Of course, this is a frequentist perspective. While I personally dont always ascribe to this perspective, I think it works fine. The only thing that is of issue here is that we obviously know there are some prediction values we can predict better than others simply given the data arrangement and how some multivariate combinations of predictors arrive at a stronger prediction.
@@ -278,8 +312,12 @@ Also plausible. But in truth, there is nothing super fancy about estimating erro
 ```{r}
 conformal_quantile_intervals <- function(train_set, calib_set, new_data, alpha = 0.05) {
   # Fit the quantile regression tree model
-  qrf_model <- quantregForest(x = train_set[, -ncol(train_set)], 
-                              y = train_set[, ncol(train_set)])
+  train_x <- train_set %>% select(-y)
+  train_y <- train_set %>% select(y) %>% pull()
+  
+  qrf_model <- quantregForest(x = train_x, 
+                              y = train_y,
+                              nthreads = 8)
   
   # Determine the lower and upper quantiles
   quantiles <- c(alpha/2, 1 - alpha/2)
@@ -292,24 +330,64 @@ conformal_quantile_intervals <- function(train_set, calib_set, new_data, alpha =
   lower_bound <- calib_pred[, 1]
   upper_bound <- calib_pred[, 2]
   calib_actual <- calib_set[, ncol(calib_set)]
-  conformity_scores <- pmax(lower_bound - calib_actual, 
+  conformity_scores <- pmax(lower_bound - calib_actual,
                             calib_actual - upper_bound)
-  
+
   # Calculate the quantile of the conformity scores
-  q_alpha <- quantile(conformity_scores, probs = 1 - alpha)
-  
+  q_alpha <- quantile(conformity_scores$y, probs = 1 - alpha)
+
   # Predict quantiles for new data
-  new_pred <- predict(qrf_model, new_data, type = "quantiles", 
+  new_pred <- predict(qrf_model, new_data, type = "quantiles",
                       quantiles = quantiles)
-  
+
   # Adjust prediction intervals based on conformity scores
   intervals <- cbind(new_pred[, 1] - q_alpha, new_pred[, 2] + q_alpha)
-  colnames(intervals) <- c("Lower Bound", "Upper Bound")
-  
+  colnames(intervals) <- c("quant_lower", "quant_upper")
+
   return(intervals)
 }
 
+conformal_quant_intervals <- conformal_quantile_intervals(
+  train_set = train, 
+  calib_set = val,
+  new_data = test,
+  alpha = 0.05
+)
 
 ```
 
-Need to adjust and test the function above. 
+Let's visualize this! For the predictions, we'll just use the point predictions generated from the spline model... as it was the best looking. 
+
+```{r}
+conf_quant_int <- bind_cols(spline_result, conformal_quant_intervals)
+
+conf_quant_int %>%
+  slice_sample(n = 1000) %>% 
+  ggplot(aes(x = x, y = predictions)) +
+  geom_point(color = "black", size = 0.5) + # Adjust point color and size
+  geom_point(aes(x = x, y = y), color = 'green', size = 0.5) +
+  geom_errorbar(aes(ymin = quant_lower, ymax = quant_upper),
+    width = 0.05, # Adjust the width of the error bars
+    color = "grey", # Change color of error bars
+    alpha = 0.2
+  ) + # Adjust transparency
+  ggtitle("X vs Predictions with Conformal Prediction Intervals") + # Add a title
+  labs(x = "x", y = "Predicted Value") + # Label the axes
+  theme_minimal() + # Apply a minimal theme
+  theme(
+    plot.title = element_text(hjust = 0.5), # Center the title
+    text = element_text(size = 12)
+  ) # Adjust text size
+```
+
+Alternative visualization
+```{r}
+conf_quant_int %>% 
+  # slice_sample(n = 500) %>% 
+  ggplot(aes(x)) +
+  geom_point(aes(y = predictions), color = 'blue') +
+  geom_point(aes(y = y), alpha = 1/10) + 
+  geom_ribbon(aes(ymin = quant_lower, ymax = quant_upper), 
+              col = "#D95F02", linewidth = 3 / 4, fill = NA)
+```
+
