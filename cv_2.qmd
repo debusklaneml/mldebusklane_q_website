@@ -13,7 +13,7 @@ toc-title: Sections
 # **Morgan 'Les' DeBusk-Lane, Ph.D.** {.unnumbered .unlisted}
 
 Email: mldebusklane\@gmail.com\
-*Crafted: March, 2023*
+*Crafted: Apr 2024*
 
 <hr size="6">
 
@@ -56,6 +56,10 @@ DeBusk-Lane, M., Zumbrunn, S., Bae, C., Broda, M., Bruning, R., & Sjogren, A. (2
 
 <p class="hangingindent">
 Ekholm, E., Zumbrunn, S., & DeBusk-Lane, M. (2017). Clarifying an elusive construct: A systematic review of writing attitudes. Educational Psychology Review, 30(3), 827-856. https://doi.org/10.1007/s10648-017-9423-5
+<p>
+
+<p class="hangingindent">
+Maese, E., Diego-Rosell, P., Debusk-Lane, L., & Kress, N. (2021, November). Development of emergent leadership measurement: Implications for human-machine teams. In _AAAI Fall Symposium_ (pp. 118-145). Cham: Springer Nature Switzerland.
 <p>
 
 <p class="hangingindent">
