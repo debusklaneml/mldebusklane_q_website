@@ -1,13 +1,5 @@
 [
   {
-    "listing": "/blog.html",
-    "items": [
-      "/posts/simulation/simulation.html",
-      "/posts/soduku_R/sudoku_R.html",
-      "/posts/groupwalk/groupwalk.html"
-    ]
-  },
-  {
     "listing": "/research.html",
     "items": [
       "/research/jr_cb_md_2019/jr_cb_md_2019.html",
@@ -17,6 +9,14 @@
       "/research/cb_md_kh_fz_2018/cb_md_kh_fz_2018.html",
       "/research/ee_sz_md_2017/ee_sz_md_2017.html",
       "/research/sz_ee_js_km_md_2017/sz_ee_js_km_md_2017.html"
+    ]
+  },
+  {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/simulation/simulation.html",
+      "/posts/soduku_R/sudoku_R.html",
+      "/posts/groupwalk/groupwalk.html"
     ]
   }
 ]

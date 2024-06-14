@@ -7,10 +7,10 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: cv_2.qmd
+      - href: CV.qmd
         text: CV
-      - href: blog.qmd
-        text: Blog
+      - href: posts.qmd
+        text: Posts
       - href: research.qmd
         text: Research
 
