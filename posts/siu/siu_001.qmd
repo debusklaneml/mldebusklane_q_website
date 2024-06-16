@@ -1,8 +1,8 @@
 ---
-title: "Stuff I Use 001: Transformers"
-description: "Stuff I Use is a blog series where I try to document cool or interesting methods that I get to use on a day to day basis."
+title: "Stuff I Use 001: Sentence Embeddings for Classification"
+description: "Stuff I Use is a blog series where I try to document advanced cool or interesting methods that I get to use on a day to day basis."
 date: 06-15-2024
-categories: [R, Python, Transformers] # self-defined categories
+categories: [R, Python, Transformers, NLP] # self-defined categories
 citation: 
   url: https://www.mldebusklane.com/posts/siu/siu_001.html
 
@@ -16,7 +16,7 @@ draft: false
 
 # Why:
 
-I often have a column of text responses that need to be classified. Essentially, this involves a zero-shot approach where I use a sentence transformer to generate embeddings for each response. I do the same for each label used in the classification. By applying a similarity metric, often cosine similarity, we can determine which embeddings (vectors representing sentences in lexical space) are most closely related to the labels. 
+I often have a column of text responses that need to be classified. Essentially, this involves a zero-shot approach where I use a sentence transformer to generate embeddings for each response. I do the same for each label used in the classification. By calculating a similarity metric between each row and label, often cosine similarity, we can determine which embeddings (vectors representing sentences in lexical space) are most closely related to the labels. 
 
 ## Setup:
 
@@ -35,6 +35,8 @@ use_condaenv(condaenv = 'embed', required = TRUE)
 source_python(here('src', 'embed.py'))
 ```
 
+A few notes: The `use_condaenv` is a pre-established conda environment that matches the required libraries/packages needed in your sourced py file. 
+
 ```{r}
 #| echo: false
 # source(here('src', 'embed_process.R'))
@@ -42,10 +44,19 @@ use_condaenv(condaenv = 'embed', required = TRUE)
 source_python(here('src', 'embed.py'))
 ```
 
-
-A few notes: The `use_condaenv` is a pre-established conda environment that matches the required libraries/packages needed in your sourced py file. 
-
 ## Review Key Functions: 
+
+This function is saved within the earlier sourced R script, `embed_process.R`.
+
+In all there are three functions here. The overall management function, and two internals that compute cosign similarity and another that situates the matrices to compute the similarity scores on a row by row basis. 
+
+Inputs:
+
+	•	cats: Data frame containing the categories with their respective labels.
+	•	input_data: Data frame containing the input data for which cosine similarity will be calculated.
+	•	min_sim: Minimum similarity threshold (though not used directly in the provided function).
+	•	target_verbatim: The column name in input_data containing the text data that will be used to generate embeddings.
+	
 ```{r}
 embedding_cosign <- function(cats, input_data, target_verbatim) {
   cats_emb <- add_embeddings_to_dataframe(cats, 'label')
@@ -82,20 +93,14 @@ embedding_cosign <- function(cats, input_data, target_verbatim) {
 }
 ```
 
-In all there are three functions here. The overall management function, and two internals that compute cosign similarity and another that situates the matrices to compute the similarity scores on a row by row basis. 
+As mentioned earlier, you'll need that conda environment to get these libraries going.
 
-Inputs:
-
-	•	cats: Data frame containing the categories with their respective labels.
-	•	input_data: Data frame containing the input data for which cosine similarity will be calculated.
-	•	min_sim: Minimum similarity threshold (though not used directly in the provided function).
-	•	target_verbatim: The column name in input_data containing the text data that will be used to generate embeddings.
+This function is very simple. Input any dataframe and the column you want to generate embedding for. It outputs the same dataframe and the embedding columns. In this case, I'm using the `gte-base` model. You can check it out here to see how it compares to other text embedding models: https://huggingface.co/thenlper/gte-base
 	
 ```{python}
 #| eval: false
 import pandas as pd
 from sentence_transformers import SentenceTransformer
-
 
 def add_embeddings_to_dataframe(df, column_name):
     # Load the sentence transformer model
@@ -122,11 +127,9 @@ def add_embeddings_to_dataframe(df, column_name):
 
 ```
 
-This Python function takes in a dataframe and a column name and simply addess the embedding vector as columns to each row. It's relatively fast. 
-
 # Quick Example: 
 
-Let's grab some data from Huggingface's datasets. I'm just grabbing some emotion utterances and for this example I dont need a ton of them, so I'm just grabbing the test set to prove the case here.  
+Let's grab some data from Huggingface's datasets. I'm just grabbing some emotion utterances and for this example I dont need a ton of them, so I'm just grabbing the test set to have something to work with.  
 
 ```{python}
 from datasets import load_dataset
@@ -135,6 +138,7 @@ dataset = load_dataset("dair-ai/emotion", trust_remote_code=True, split='test')
 df = pd.DataFrame(dataset)
 ```
 
+This just lets us access the python data in R. 
 ```{r}
 r_df <- py$df
 ```
@@ -151,15 +155,15 @@ gt(inspect) |>
   )
 ```
 
-
+Here is how we can align some set of labels to each row of utterances/verbatims. 
 
 ```{r}
 # Create some arbitrary labels: 
 labels <- tibble(
   label = c('mad', 'sad', 'interested', 'happy', 'doesnt care'))
+
 classification_probs <- embedding_cosign(cats = labels, input_data = r_df, target_verbatim = 'text') |> 
   arrange(-mad)
-
 ```
 
 ```{r}
@@ -169,3 +173,4 @@ gt(classification_probs) |>
   )
 ```
 
+Overall, once you have your scripts in place and your conda environment situated, it's easy to compute cosine (it's quick with some matrix algebra) and align your labels to each row of your open-ended utterances or whatever else you're interested in aligning. On my computer without any GPU assistance, the embeddings are generated around 50/second. The cosign computation is maybe less than a couple seconds for about 5k rows and 5 labels. 

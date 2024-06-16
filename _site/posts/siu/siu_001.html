@@ -8,9 +8,9 @@
 
 <meta name="author" content="M. L. DeBusk-Lane">
 <meta name="dcterms.date" content="2024-06-15">
-<meta name="description" content="Stuff I Use is a blog series where I try to document cool or interesting methods that I get to use on a day to day basis.">
+<meta name="description" content="Stuff I Use is a blog series where I try to document advanced cool or interesting methods that I get to use on a day to day basis.">
 
-<title>M. L. DeBusk-Lane, Ph.D.&nbsp;- Stuff I Use 001: Transformers</title>
+<title>M. L. DeBusk-Lane, Ph.D.&nbsp;- Stuff I Use 001: Sentence Embeddings for Classification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,16 +146,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Stuff I Use 001: Transformers</h1>
+      <h1 class="title">Stuff I Use 001: Sentence Embeddings for Classification</h1>
                   <div>
         <div class="description">
-          Stuff I Use is a blog series where I try to document cool or interesting methods that I get to use on a day to day basis.
+          Stuff I Use is a blog series where I try to document advanced cool or interesting methods that I get to use on a day to day basis.
         </div>
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">R</div>
                 <div class="quarto-category">Python</div>
                 <div class="quarto-category">Transformers</div>
+                <div class="quarto-category">NLP</div>
               </div>
                   </div>
   </div>
@@ -210,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="why" class="level1">
 <h1>Why:</h1>
-<p>I often have a column of text responses that need to be classified. Essentially, this involves a zero-shot approach where I use a sentence transformer to generate embeddings for each response. I do the same for each label used in the classification. By applying a similarity metric, often cosine similarity, we can determine which embeddings (vectors representing sentences in lexical space) are most closely related to the labels.</p>
+<p>I often have a column of text responses that need to be classified. Essentially, this involves a zero-shot approach where I use a sentence transformer to generate embeddings for each response. I do the same for each label used in the classification. By calculating a similarity metric between each row and label, often cosine similarity, we can determine which embeddings (vectors representing sentences in lexical space) are most closely related to the labels.</p>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup:</h2>
 <section id="load-r-packages" class="level3">
@@ -236,41 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="review-key-functions" class="level2">
 <h2 class="anchored" data-anchor-id="review-key-functions">Review Key Functions:</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>embedding_cosign <span class="ot">&lt;-</span> <span class="cf">function</span>(cats, input_data, target_verbatim) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  cats_emb <span class="ot">&lt;-</span> <span class="fu">add_embeddings_to_dataframe</span>(cats, <span class="st">'label'</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  test_emb <span class="ot">&lt;-</span> <span class="fu">add_embeddings_to_dataframe</span>(input_data, target_verbatim)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  compute_cosine_similarity <span class="ot">&lt;-</span> <span class="cf">function</span>(vec1, vec2) {</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(vec1 <span class="sc">*</span> vec2) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="fu">sum</span>(vec1<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(vec2<span class="sc">^</span><span class="dv">2</span>)))</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  compare_cats_to_utterances <span class="ot">&lt;-</span> <span class="cf">function</span>(cats_emb, data_emb) {</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract embeddings into matrices</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    cats_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(cats_emb <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">'embedding'</span>)))</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    data_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(data_emb <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">'embedding'</span>)))</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute cosine similarity</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    similarity_scores <span class="ot">&lt;-</span> <span class="fu">map_df</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data_matrix), <span class="cf">function</span>(i) {</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">map_dfc</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(cats_matrix), <span class="cf">function</span>(j) {</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        score <span class="ot">&lt;-</span> <span class="fu">compute_cosine_similarity</span>(data_matrix[i,], cats_matrix[j,])</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        col_name <span class="ot">&lt;-</span> cats_emb[j, <span class="dv">1</span>] <span class="co"># Direct use of the category label</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(<span class="fu">setNames</span>(<span class="fu">list</span>(score), col_name))</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>      })</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Combine similarity scores with original utterance data (excluding embeddings)</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    result_df <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(data_emb <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">'embedding'</span>)), similarity_scores)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(result_df)</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">compare_cats_to_utterances</span>(</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">cats_emb =</span> cats_emb,</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">data_emb =</span> test_emb</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>This function is saved within the earlier sourced R script, <code>embed_process.R</code>.</p>
 <p>In all there are three functions here. The overall management function, and two internals that compute cosign similarity and another that situates the matrices to compute the similarity scores on a row by row basis.</p>
 <p>Inputs:</p>
 <pre><code>•   cats: Data frame containing the categories with their respective labels.
@@ -278,45 +245,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 •   min_sim: Minimum similarity threshold (though not used directly in the provided function).
 •   target_verbatim: The column name in input_data containing the text data that will be used to generate embeddings.</code></pre>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>embedding_cosign <span class="ot">&lt;-</span> <span class="cf">function</span>(cats, input_data, target_verbatim) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  cats_emb <span class="ot">&lt;-</span> <span class="fu">add_embeddings_to_dataframe</span>(cats, <span class="st">'label'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  test_emb <span class="ot">&lt;-</span> <span class="fu">add_embeddings_to_dataframe</span>(input_data, target_verbatim)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  compute_cosine_similarity <span class="ot">&lt;-</span> <span class="cf">function</span>(vec1, vec2) {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(vec1 <span class="sc">*</span> vec2) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="fu">sum</span>(vec1<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(vec2<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  compare_cats_to_utterances <span class="ot">&lt;-</span> <span class="cf">function</span>(cats_emb, data_emb) {</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract embeddings into matrices</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    cats_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(cats_emb <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">'embedding'</span>)))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    data_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(data_emb <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">'embedding'</span>)))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute cosine similarity</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    similarity_scores <span class="ot">&lt;-</span> <span class="fu">map_df</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data_matrix), <span class="cf">function</span>(i) {</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">map_dfc</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(cats_matrix), <span class="cf">function</span>(j) {</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        score <span class="ot">&lt;-</span> <span class="fu">compute_cosine_similarity</span>(data_matrix[i,], cats_matrix[j,])</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        col_name <span class="ot">&lt;-</span> cats_emb[j, <span class="dv">1</span>] <span class="co"># Direct use of the category label</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(<span class="fu">setNames</span>(<span class="fu">list</span>(score), col_name))</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Combine similarity scores with original utterance data (excluding embeddings)</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    result_df <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(data_emb <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">'embedding'</span>)), similarity_scores)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(result_df)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">compare_cats_to_utterances</span>(</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">cats_emb =</span> cats_emb,</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">data_emb =</span> test_emb</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As mentioned earlier, you’ll need that conda environment to get these libraries going.</p>
+<p>This function is very simple. Input any dataframe and the column you want to generate embedding for. It outputs the same dataframe and the embedding columns. In this case, I’m using the <code>gte-base</code> model. You can check it out here to see how it compares to other text embedding models: https://huggingface.co/thenlper/gte-base</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sentence_transformers <span class="im">import</span> SentenceTransformer</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_embeddings_to_dataframe(df, column_name):</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load the sentence transformer model</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> SentenceTransformer(<span class="st">'thenlper/gte-base'</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure the specified column exists in the DataFrame</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> column_name <span class="kw">not</span> <span class="kw">in</span> df.columns:</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Column '</span><span class="sc">{</span>column_name<span class="sc">}</span><span class="ss">' not found in DataFrame."</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate embeddings for the specified column.</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The output is a list of lists (each inner list is an embedding vector for a sentence).</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    embeddings <span class="op">=</span> model.encode(df[column_name].to_list(), convert_to_tensor<span class="op">=</span><span class="va">False</span>, show_progress_bar<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert embeddings to a DataFrame.</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    embeddings_df <span class="op">=</span> pd.DataFrame(embeddings)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rename the columns to indicate they are embedding dimensions.</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    embeddings_df.columns <span class="op">=</span> [<span class="ss">f'embedding_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(embeddings_df.shape[<span class="dv">1</span>])]</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Concatenate the original DataFrame with the embeddings DataFrame.</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    result_df <span class="op">=</span> pd.concat([df, embeddings_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_embeddings_to_dataframe(df, column_name):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load the sentence transformer model</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> SentenceTransformer(<span class="st">'thenlper/gte-base'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure the specified column exists in the DataFrame</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> column_name <span class="kw">not</span> <span class="kw">in</span> df.columns:</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Column '</span><span class="sc">{</span>column_name<span class="sc">}</span><span class="ss">' not found in DataFrame."</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate embeddings for the specified column.</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The output is a list of lists (each inner list is an embedding vector for a sentence).</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    embeddings <span class="op">=</span> model.encode(df[column_name].to_list(), convert_to_tensor<span class="op">=</span><span class="va">False</span>, show_progress_bar<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert embeddings to a DataFrame.</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    embeddings_df <span class="op">=</span> pd.DataFrame(embeddings)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rename the columns to indicate they are embedding dimensions.</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    embeddings_df.columns <span class="op">=</span> [<span class="ss">f'embedding_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(embeddings_df.shape[<span class="dv">1</span>])]</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Concatenate the original DataFrame with the embeddings DataFrame.</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    result_df <span class="op">=</span> pd.concat([df, embeddings_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This Python function takes in a dataframe and a column name and simply addess the embedding vector as columns to each row. It’s relatively fast.</p>
 </section>
 </section>
 <section id="quick-example" class="level1">
 <h1>Quick Example:</h1>
-<p>Let’s grab some data from Huggingface’s datasets. I’m just grabbing some emotion utterances and for this example I dont need a ton of them, so I’m just grabbing the test set to prove the case here.</p>
+<p>Let’s grab some data from Huggingface’s datasets. I’m just grabbing some emotion utterances and for this example I dont need a ton of them, so I’m just grabbing the test set to have something to work with.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datasets <span class="im">import</span> load_dataset</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> load_dataset(<span class="st">"dair-ai/emotion"</span>, trust_remote_code<span class="op">=</span><span class="va">True</span>, split<span class="op">=</span><span class="st">'test'</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>This just lets us access the python data in R.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>r_df <span class="ot">&lt;-</span> py<span class="sc">$</span>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -332,23 +335,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="obagwxsoxn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:400px;">
-<style>#obagwxsoxn table {
+<div id="ozambfbtyx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:400px;">
+<style>#ozambfbtyx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#obagwxsoxn thead, #obagwxsoxn tbody, #obagwxsoxn tfoot, #obagwxsoxn tr, #obagwxsoxn td, #obagwxsoxn th {
+#ozambfbtyx thead, #ozambfbtyx tbody, #ozambfbtyx tfoot, #ozambfbtyx tr, #ozambfbtyx td, #ozambfbtyx th {
   border-style: none;
 }
 
-#obagwxsoxn p {
+#ozambfbtyx p {
   margin: 0;
   padding: 0;
 }
 
-#obagwxsoxn .gt_table {
+#ozambfbtyx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -374,12 +377,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#obagwxsoxn .gt_caption {
+#ozambfbtyx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#obagwxsoxn .gt_title {
+#ozambfbtyx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -391,7 +394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#obagwxsoxn .gt_subtitle {
+#ozambfbtyx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -403,7 +406,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#obagwxsoxn .gt_heading {
+#ozambfbtyx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -415,13 +418,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#obagwxsoxn .gt_bottom_border {
+#ozambfbtyx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#obagwxsoxn .gt_col_headings {
+#ozambfbtyx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -436,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#obagwxsoxn .gt_col_heading {
+#ozambfbtyx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -456,7 +459,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#obagwxsoxn .gt_column_spanner_outer {
+#ozambfbtyx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -468,15 +471,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#obagwxsoxn .gt_column_spanner_outer:first-child {
+#ozambfbtyx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#obagwxsoxn .gt_column_spanner_outer:last-child {
+#ozambfbtyx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#obagwxsoxn .gt_column_spanner {
+#ozambfbtyx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -488,11 +491,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#obagwxsoxn .gt_spanner_row {
+#ozambfbtyx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#obagwxsoxn .gt_group_heading {
+#ozambfbtyx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -518,7 +521,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#obagwxsoxn .gt_empty_group_heading {
+#ozambfbtyx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -533,15 +536,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#obagwxsoxn .gt_from_md > :first-child {
+#ozambfbtyx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#obagwxsoxn .gt_from_md > :last-child {
+#ozambfbtyx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#obagwxsoxn .gt_row {
+#ozambfbtyx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -560,7 +563,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#obagwxsoxn .gt_stub {
+#ozambfbtyx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -573,7 +576,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#obagwxsoxn .gt_stub_row_group {
+#ozambfbtyx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -587,15 +590,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#obagwxsoxn .gt_row_group_first td {
+#ozambfbtyx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#obagwxsoxn .gt_row_group_first th {
+#ozambfbtyx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#obagwxsoxn .gt_summary_row {
+#ozambfbtyx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -605,16 +608,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#obagwxsoxn .gt_first_summary_row {
+#ozambfbtyx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#obagwxsoxn .gt_first_summary_row.thick {
+#ozambfbtyx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#obagwxsoxn .gt_last_summary_row {
+#ozambfbtyx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -624,7 +627,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#obagwxsoxn .gt_grand_summary_row {
+#ozambfbtyx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -634,7 +637,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#obagwxsoxn .gt_first_grand_summary_row {
+#ozambfbtyx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -644,7 +647,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#obagwxsoxn .gt_last_grand_summary_row_top {
+#ozambfbtyx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -654,11 +657,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#obagwxsoxn .gt_striped {
+#ozambfbtyx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#obagwxsoxn .gt_table_body {
+#ozambfbtyx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -667,7 +670,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#obagwxsoxn .gt_footnotes {
+#ozambfbtyx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -681,7 +684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#obagwxsoxn .gt_footnote {
+#ozambfbtyx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -690,7 +693,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#obagwxsoxn .gt_sourcenotes {
+#ozambfbtyx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -704,7 +707,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#obagwxsoxn .gt_sourcenote {
+#ozambfbtyx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -712,63 +715,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#obagwxsoxn .gt_left {
+#ozambfbtyx .gt_left {
   text-align: left;
 }
 
-#obagwxsoxn .gt_center {
+#ozambfbtyx .gt_center {
   text-align: center;
 }
 
-#obagwxsoxn .gt_right {
+#ozambfbtyx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#obagwxsoxn .gt_font_normal {
+#ozambfbtyx .gt_font_normal {
   font-weight: normal;
 }
 
-#obagwxsoxn .gt_font_bold {
+#ozambfbtyx .gt_font_bold {
   font-weight: bold;
 }
 
-#obagwxsoxn .gt_font_italic {
+#ozambfbtyx .gt_font_italic {
   font-style: italic;
 }
 
-#obagwxsoxn .gt_super {
+#ozambfbtyx .gt_super {
   font-size: 65%;
 }
 
-#obagwxsoxn .gt_footnote_marks {
+#ozambfbtyx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#obagwxsoxn .gt_asterisk {
+#ozambfbtyx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#obagwxsoxn .gt_indent_1 {
+#ozambfbtyx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#obagwxsoxn .gt_indent_2 {
+#ozambfbtyx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#obagwxsoxn .gt_indent_3 {
+#ozambfbtyx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#obagwxsoxn .gt_indent_4 {
+#ozambfbtyx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#obagwxsoxn .gt_indent_5 {
+#ozambfbtyx .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -24798,12 +24801,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Here is how we can align some set of labels to each row of utterances/verbatims.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create some arbitrary labels: </span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="fu">c</span>(<span class="st">'mad'</span>, <span class="st">'sad'</span>, <span class="st">'interested'</span>, <span class="st">'happy'</span>, <span class="st">'doesnt care'</span>))</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>classification_probs <span class="ot">&lt;-</span> <span class="fu">embedding_cosign</span>(<span class="at">cats =</span> labels, <span class="at">input_data =</span> r_df, <span class="at">target_verbatim =</span> <span class="st">'text'</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>mad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>classification_probs <span class="ot">&lt;-</span> <span class="fu">embedding_cosign</span>(<span class="at">cats =</span> labels, <span class="at">input_data =</span> r_df, <span class="at">target_verbatim =</span> <span class="st">'text'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>mad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(classification_probs) <span class="sc">|&gt;</span> </span>
@@ -24812,23 +24817,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="faycjqzyav" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:400px;">
-<style>#faycjqzyav table {
+<div id="jdbbjcxfaf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:400px;">
+<style>#jdbbjcxfaf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#faycjqzyav thead, #faycjqzyav tbody, #faycjqzyav tfoot, #faycjqzyav tr, #faycjqzyav td, #faycjqzyav th {
+#jdbbjcxfaf thead, #jdbbjcxfaf tbody, #jdbbjcxfaf tfoot, #jdbbjcxfaf tr, #jdbbjcxfaf td, #jdbbjcxfaf th {
   border-style: none;
 }
 
-#faycjqzyav p {
+#jdbbjcxfaf p {
   margin: 0;
   padding: 0;
 }
 
-#faycjqzyav .gt_table {
+#jdbbjcxfaf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -24854,12 +24859,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#faycjqzyav .gt_caption {
+#jdbbjcxfaf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#faycjqzyav .gt_title {
+#jdbbjcxfaf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -24871,7 +24876,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#faycjqzyav .gt_subtitle {
+#jdbbjcxfaf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -24883,7 +24888,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#faycjqzyav .gt_heading {
+#jdbbjcxfaf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -24895,13 +24900,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#faycjqzyav .gt_bottom_border {
+#jdbbjcxfaf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#faycjqzyav .gt_col_headings {
+#jdbbjcxfaf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -24916,7 +24921,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#faycjqzyav .gt_col_heading {
+#jdbbjcxfaf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -24936,7 +24941,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#faycjqzyav .gt_column_spanner_outer {
+#jdbbjcxfaf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -24948,15 +24953,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#faycjqzyav .gt_column_spanner_outer:first-child {
+#jdbbjcxfaf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#faycjqzyav .gt_column_spanner_outer:last-child {
+#jdbbjcxfaf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#faycjqzyav .gt_column_spanner {
+#jdbbjcxfaf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -24968,11 +24973,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#faycjqzyav .gt_spanner_row {
+#jdbbjcxfaf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#faycjqzyav .gt_group_heading {
+#jdbbjcxfaf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -24998,7 +25003,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#faycjqzyav .gt_empty_group_heading {
+#jdbbjcxfaf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -25013,15 +25018,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#faycjqzyav .gt_from_md > :first-child {
+#jdbbjcxfaf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#faycjqzyav .gt_from_md > :last-child {
+#jdbbjcxfaf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#faycjqzyav .gt_row {
+#jdbbjcxfaf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -25040,7 +25045,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#faycjqzyav .gt_stub {
+#jdbbjcxfaf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -25053,7 +25058,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#faycjqzyav .gt_stub_row_group {
+#jdbbjcxfaf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -25067,15 +25072,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#faycjqzyav .gt_row_group_first td {
+#jdbbjcxfaf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#faycjqzyav .gt_row_group_first th {
+#jdbbjcxfaf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#faycjqzyav .gt_summary_row {
+#jdbbjcxfaf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -25085,16 +25090,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#faycjqzyav .gt_first_summary_row {
+#jdbbjcxfaf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#faycjqzyav .gt_first_summary_row.thick {
+#jdbbjcxfaf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#faycjqzyav .gt_last_summary_row {
+#jdbbjcxfaf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -25104,7 +25109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#faycjqzyav .gt_grand_summary_row {
+#jdbbjcxfaf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -25114,7 +25119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#faycjqzyav .gt_first_grand_summary_row {
+#jdbbjcxfaf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -25124,7 +25129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#faycjqzyav .gt_last_grand_summary_row_top {
+#jdbbjcxfaf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -25134,11 +25139,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#faycjqzyav .gt_striped {
+#jdbbjcxfaf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#faycjqzyav .gt_table_body {
+#jdbbjcxfaf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -25147,7 +25152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#faycjqzyav .gt_footnotes {
+#jdbbjcxfaf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -25161,7 +25166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#faycjqzyav .gt_footnote {
+#jdbbjcxfaf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -25170,7 +25175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#faycjqzyav .gt_sourcenotes {
+#jdbbjcxfaf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -25184,7 +25189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#faycjqzyav .gt_sourcenote {
+#jdbbjcxfaf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -25192,63 +25197,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#faycjqzyav .gt_left {
+#jdbbjcxfaf .gt_left {
   text-align: left;
 }
 
-#faycjqzyav .gt_center {
+#jdbbjcxfaf .gt_center {
   text-align: center;
 }
 
-#faycjqzyav .gt_right {
+#jdbbjcxfaf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#faycjqzyav .gt_font_normal {
+#jdbbjcxfaf .gt_font_normal {
   font-weight: normal;
 }
 
-#faycjqzyav .gt_font_bold {
+#jdbbjcxfaf .gt_font_bold {
   font-weight: bold;
 }
 
-#faycjqzyav .gt_font_italic {
+#jdbbjcxfaf .gt_font_italic {
   font-style: italic;
 }
 
-#faycjqzyav .gt_super {
+#jdbbjcxfaf .gt_super {
   font-size: 65%;
 }
 
-#faycjqzyav .gt_footnote_marks {
+#jdbbjcxfaf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#faycjqzyav .gt_asterisk {
+#jdbbjcxfaf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#faycjqzyav .gt_indent_1 {
+#jdbbjcxfaf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#faycjqzyav .gt_indent_2 {
+#jdbbjcxfaf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#faycjqzyav .gt_indent_3 {
+#jdbbjcxfaf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#faycjqzyav .gt_indent_4 {
+#jdbbjcxfaf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#faycjqzyav .gt_indent_5 {
+#jdbbjcxfaf .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -39273,20 +39278,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Overall, once you have your scripts in place and your conda environment situated, it’s easy to compute cosine (it’s quick with some matrix algebra) and align your labels to each row of your open-ended utterances or whatever else you’re interested in aligning. On my computer without any GPU assistance, the embeddings are generated around 50/second. The cosign computation is maybe less than a couple seconds for about 5k rows and 5 labels.</p>
 
 
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{l. debusk-lane2024,
   author = {L. DeBusk-Lane, M.},
-  title = {Stuff {I} {Use} 001: {Transformers}},
+  title = {Stuff {I} {Use} 001: {Sentence} {Embeddings} for
+    {Classification}},
   date = {2024-06-15},
   url = {https://www.mldebusklane.com/posts/siu/siu_001.html},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-l. debusk-lane2024" class="csl-entry quarto-appendix-citeas" role="listitem">
-L. DeBusk-Lane, M. 2024. <span>“Stuff I Use 001: Transformers.”</span>
-June 15, 2024. <a href="https://www.mldebusklane.com/posts/siu/siu_001.html">https://www.mldebusklane.com/posts/siu/siu_001.html</a>.
+L. DeBusk-Lane, M. 2024. <span>“Stuff I Use 001: Sentence Embeddings for
+Classification.”</span> June 15, 2024. <a href="https://www.mldebusklane.com/posts/siu/siu_001.html">https://www.mldebusklane.com/posts/siu/siu_001.html</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
