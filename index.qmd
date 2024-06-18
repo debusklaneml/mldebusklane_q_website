@@ -1,39 +1,31 @@
 ---
-title: ""
-page-layout: full
+title: 'M. L. DeBusk-Lane, Ph.D.'
+image: images/hs.jpeg
+toc: false
+about:
+  template: trestles
+  image-shape: round
+  image-width: 20em
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/mldebusklane
+    - icon: github
+      text: GitHub
+      href: https://github.com/debusklaneml
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/debusklaneml
+    - icon: envelope
+      text: Email
+      href: mailto:mldebusklane@gmail.com
 ---
 
-::: grid
-::: g-col-4
-![](images/profile.jpeg){width="300px"}
-:::
+# Hi There!
+Welcome. This is a site that I've put together (with R) to help communicate (and store) many of the things I'm interested in, who I am, and what I do. Thanks for coming. All opinions my own. 
 
-::: g-col-8
-I am a data geek, aviator, father, husband, and one who easily gets lost in figuring out just about anything.
+# Who I am: 
+I enjoy learning, using data to answer cool questions, and spending time with my family, friends, and dogs. I live in Richmond, Va.
 
-My personal research focuses on writing self-efficacy and feedback, emotional reactivity, working memory, and various other musings such as creativity and intelligence in the student population. I am also deeply interested in unique quantitative methods, mixtures models, measurement design, machine learning, and longitudinal growth.
-
-Currently, most of my work has centered around computational methods of natural language. These include word vector models, topic generation from word embeddings, and automated pipelines to develop such. My current interests/learnings in this space focus on conformal prediction and other unique error models. 
-
-All opinions my own. 
-:::
-:::
-
-{{< pagebreak >}}
-
-::: {.column-page-inset .text-center}
-```{=html}
-<a class="btn btn-outline-light", href="https://twitter.com/mldebusklane" target="_blank" rel="noopener noreferrer">
-    <i class="bi bi-twitter" role='img' aria-label='Twitter'></i>
-</a>
-<a class="btn btn-outline-light", href="https://github.com/debusklaneml" target="_blank" rel="noopener noreferrer">
-    <i class="bi bi-github" role='img' aria-label='Github'></i>
-</a>
-<a class="btn btn-outline-light", href="https://linkedin.com/in/debusklaneml" target="_blank" rel="noopener noreferrer">
-    <i class="bi bi-linkedin" role='img' aria-label='LinkedIn'></i>
-</a>
-<a class="btn btn-outline-light", href="mailto:mldebusklane@gmail.com" target="_blank" rel="noopener noreferrer">
-    <i class="ai bi-envelope" role='img' aria-label='email'></i>
-</a>
-```
-:::
+# What I do: 
+I am currently a Computational Social Scientist at Gallup where I get to answer cool questions with world data, use fancy statistics, and help build really cool partnerships across DOD, other government agencies, and the public sector. 
