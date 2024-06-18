@@ -24,7 +24,7 @@ I often have a column of text responses that need to be classified. Essentially,
 ```{r}
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse, here, pins, janitor, readxl,
-               reticulate, textdata, gt, httr, jsonlite)
+               reticulate, gt)
 ```
 
 ### Set Up Functions and Python Env:
