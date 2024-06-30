@@ -5,7 +5,7 @@ date: 06-15-2024
 categories: [R, Python, Transformers, NLP] # self-defined categories
 citation: 
   url: https://www.mldebusklane.com/posts/siu/siu_001.html
-
+image: /posts/siu/hf.png
 output: 
   html_document:
     theme: journal

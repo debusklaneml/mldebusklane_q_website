@@ -73,9 +73,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-date','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -170,21 +170,40 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="R,Conformal" data-listing-date-sort="1722312000000" data-listing-file-modified-sort="1719750900609" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13">
-<div class="thumbnail">
-<p><a href="./posts/conformal/confromal.html"> <!-- img(9CEB782EFEE6)[progressive=false, height=]:posts/conformal/confromal.html --> </a></p>
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
 </div>
-<div class="body">
-<a href="./posts/conformal/confromal.html">
-<h3 class="no-anchor listing-title">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="R,Conformal" data-listing-date-sort="1722312000000" data-listing-file-modified-sort="1719752077045" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13">
+<a href="./posts/conformal/confromal.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/conformal/conformal.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Conformal Prediction
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
@@ -193,36 +212,25 @@ R
 Conformal
 </div>
 </div>
-<a href="./posts/conformal/confromal.html">
-<div class="listing-description">
-<!-- desc(5A0113B34292)[max=175]:posts/conformal/confromal.html -->
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/conformal/confromal.html">
+<div class="card-attribution card-text-small end">
 <div class="listing-date">
 Jul 30, 2024
 </div>
-<div class="listing-author">
-M. L. DeBusk-Lane
+</div>
+</div>
 </div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="R,Python,Transformers,NLP" data-listing-date-sort="1718424000000" data-listing-file-modified-sort="1719750398465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
-<div class="thumbnail">
-<p><a href="./posts/siu/siu_001.html"> <!-- img(9CEB782EFEE6)[progressive=false, height=]:posts/siu/siu_001.html --> </a></p>
-</div>
-<div class="body">
-<a href="./posts/siu/siu_001.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="1" data-categories="R,Python,Transformers,NLP" data-listing-date-sort="1718424000000" data-listing-file-modified-sort="1719753185934" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
+<a href="./posts/siu/siu_001.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/siu/hf.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Stuff I Use 001: Sentence Embeddings for Classification
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
@@ -237,36 +245,25 @@ Transformers
 NLP
 </div>
 </div>
-<a href="./posts/siu/siu_001.html">
-<div class="listing-description">
-<p>Stuff I Use is a blog series where I try to document advanced cool or interesting methods that I get to use on a day to day basis.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/siu/siu_001.html">
+<div class="card-attribution card-text-small end">
 <div class="listing-date">
 Jun 15, 2024
 </div>
-<div class="listing-author">
-M. L. DeBusk-Lane
+</div>
+</div>
 </div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Code,Simulation,R" data-listing-date-sort="1699070400000" data-listing-file-modified-sort="1699113757517" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4">
-<div class="thumbnail">
-<p><a href="./posts/simulation/simulation.html"> <!-- img(9CEB782EFEE6)[progressive=false, height=]:posts/simulation/simulation.html --> </a></p>
-</div>
-<div class="body">
-<a href="./posts/simulation/simulation.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="2" data-categories="Code,Simulation,R" data-listing-date-sort="1699070400000" data-listing-file-modified-sort="1719752519407" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4">
+<a href="./posts/simulation/simulation.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/simulation/simulated_data.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Simulation: Part 0
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Code'); return false;">
 Code
@@ -278,36 +275,23 @@ Simulation
 R
 </div>
 </div>
-<a href="./posts/simulation/simulation.html">
-<div class="listing-description">
-<!-- desc(5A0113B34292)[max=175]:posts/simulation/simulation.html -->
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/simulation/simulation.html">
+<div class="card-attribution card-text-small end">
 <div class="listing-date">
 Nov 4, 2023
 </div>
-<div class="listing-author">
-M. L. DeBusk-Lane
+</div>
+</div>
 </div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Code,R" data-listing-date-sort="1582866000000" data-listing-file-modified-sort="1662079477998" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4">
-<div class="thumbnail">
-<p><a href="./posts/soduku_R/sudoku_R.html"> <!-- img(9CEB782EFEE6)[progressive=false, height=]:posts/soduku_R/sudoku_R.html --> </a></p>
-</div>
-<div class="body">
-<a href="./posts/soduku_R/sudoku_R.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="3" data-categories="Code,R" data-listing-date-sort="1582866000000" data-listing-file-modified-sort="1662079477998" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4">
+<a href="./posts/soduku_R/sudoku_R.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="https://raw.githubusercontent.com/debusklaneml/mldebusklane.com/master/content/post/Random_Code/sudoku.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Sudoku Solver in R
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Code'); return false;">
 Code
@@ -316,36 +300,25 @@ Code
 R
 </div>
 </div>
-<a href="./posts/soduku_R/sudoku_R.html">
-<div class="listing-description">
-<!-- desc(5A0113B34292)[max=175]:posts/soduku_R/sudoku_R.html -->
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/soduku_R/sudoku_R.html">
+<div class="card-attribution card-text-small end">
 <div class="listing-date">
 Feb 28, 2020
 </div>
-<div class="listing-author">
-M. L. DeBusk-Lane
+</div>
+</div>
 </div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Code,R" data-listing-date-sort="1582606800000" data-listing-file-modified-sort="1660272159914" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
-<div class="thumbnail">
-<p><a href="./posts/groupwalk/groupwalk.html"> <!-- img(9CEB782EFEE6)[progressive=false, height=]:posts/groupwalk/groupwalk.html --> </a></p>
-</div>
-<div class="body">
-<a href="./posts/groupwalk/groupwalk.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="4" data-categories="Code,R" data-listing-date-sort="1582606800000" data-listing-file-modified-sort="1719752837441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
+<a href="./posts/groupwalk/groupwalk.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/groupwalk/dplyr.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 group_walk
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Code'); return false;">
 Code
@@ -354,22 +327,14 @@ Code
 R
 </div>
 </div>
-<a href="./posts/groupwalk/groupwalk.html">
-<div class="listing-description">
-<!-- desc(5A0113B34292)[max=175]:posts/groupwalk/groupwalk.html -->
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/groupwalk/groupwalk.html">
+<div class="card-attribution card-text-small end">
 <div class="listing-date">
 Feb 25, 2020
 </div>
-<div class="listing-author">
-M. L. DeBusk-Lane
+</div>
+</div>
 </div>
 </a>
-</div>
 </div>
 </div>
 <div class="listing-no-matching d-none">

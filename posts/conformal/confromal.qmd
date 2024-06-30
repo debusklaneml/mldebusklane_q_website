@@ -2,7 +2,7 @@
 title: "Conformal Prediction"
 date: '2024-07-30'
 categories: [R, Conformal]
-
+image: /posts/conformal/conformal.png
 output: 
   html_document:
     theme: journal
@@ -68,6 +68,8 @@ sim_data <- make_data(n)
 sim_data %>% 
   ggplot(aes(x, y)) + 
   geom_point(alpha = 1 / 10)
+
+
 ```
 ```{r}
 # This is from the tidymodels example here: https://www.tidymodels.org/learn/models/conformal-regression/

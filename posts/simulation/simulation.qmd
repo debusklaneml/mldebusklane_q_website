@@ -1,7 +1,7 @@
 ---
 title: 'Simulation: Part 0'
 date: '2023-11-04'
-
+image: /posts/simulation/simulated_data.png
 categories: 
   - Code
   - Simulation
@@ -70,6 +70,7 @@ ggplot(simulated_data, aes(x = x_1, y = y)) +
   labs(title = "Simulated Data for OLS",
        x = "Independent Variable (x_1)",
        y = "Dependent Variable (y)")
+
 ```
 
 Now we can estimate a model. 
