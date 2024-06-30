@@ -15,6 +15,7 @@
     "listing": "/posts.html",
     "items": [
       "/posts/siu/siu_001.html",
+      "/posts/conformal/confromal.html",
       "/posts/simulation/simulation.html",
       "/posts/soduku_R/sudoku_R.html",
       "/posts/groupwalk/groupwalk.html"
