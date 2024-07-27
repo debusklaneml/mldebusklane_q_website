@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Research – M. L. DeBusk-Lane, Ph.D.</title>
+<title>cv – M. L. DeBusk-Lane, Ph.D.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,65 +68,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -155,7 +95,7 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./CV.html"> 
+    <a class="nav-link active" href="./CV.html" aria-current="page"> 
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
@@ -163,7 +103,7 @@ window.Quarto = {
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./research.html" aria-current="page"> 
+    <a class="nav-link" href="./research.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
 </ul>
@@ -178,285 +118,186 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="Cognitive Load">Cognitive Load <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Creativity">Creativity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Implicit Theories">Implicit Theories <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Intelligence">Intelligence <span class="quarto-category-count">(1)</span></div><div class="category" data-category="LPA">LPA <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Measurement Invariance">Measurement Invariance <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Motivation">Motivation <span class="quarto-category-count">(7)</span></div><div class="category" data-category="SEM">SEM <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b-esem">b-esem <span class="quarto-category-count">(1)</span></div></div></div>
-<!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Research</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sections</h2>
+   
+  <ul>
+  <li><a href="#education" id="toc-education" class="nav-link active" data-scroll-target="#education"><strong>Education</strong></a></li>
+  <li><a href="#peer-reviewed-articles" id="toc-peer-reviewed-articles" class="nav-link" data-scroll-target="#peer-reviewed-articles"><strong>Peer Reviewed Articles</strong></a></li>
+  <li><a href="#peer-reviewed-presentations" id="toc-peer-reviewed-presentations" class="nav-link" data-scroll-target="#peer-reviewed-presentations"><strong>Peer Reviewed Presentations</strong></a></li>
+  <li><a href="#peer-reviewed-reports" id="toc-peer-reviewed-reports" class="nav-link" data-scroll-target="#peer-reviewed-reports"><strong>Peer Reviewed Reports</strong></a></li>
+  </ul>
+</nav>
     </div>
-</div>
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Motivation,LPA,b-esem" data-listing-date-sort="1676869200000" data-listing-file-modified-sort="1722079876401" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="214">
-<a href="./research/mldl_2023/mldl_2023.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/mldl_2023/mldl_2023.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Variable- and person-centered approaches to examining construct-relevant multidimensionality in writing self-efficacy
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Motivation'); return false;">
-Motivation
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('LPA'); return false;">
-LPA
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('b-esem'); return false;">
-b-esem
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Feb 20, 2023
-</div>
-</div>
-</div>
-</div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+
+
+<section id="morgan-les-debusk-lane-ph.d." class="level1 unnumbered unlisted">
+<h1 class="unnumbered unlisted"><strong>Morgan ‘Les’ DeBusk-Lane, Ph.D.</strong></h1>
+<p>Email: mldebusklane@gmail.com<br>
+<em>Crafted: Apr 2024</em></p>
+<hr size="6">
+</section>
+<section id="education" class="level1">
+<h1><strong>Education</strong></h1>
+<ul>
+<li><p>Doctor of Philosophy (Educational Psychology), Virginia Commonwealth University.</p>
+<p class="hangingindent">
+</p><p><strong>Dissertation</strong>: “Variable- and person-centered approaches to examining construct-relevant multidimensionality in writing self-efficacy”</p>
+<p></p></li>
+<li><p>Bachelor of Science in Psychology, Pennsylvania State University - with High Distinction.</p>
+<hr size="4"></li>
+</ul>
+</section>
+<section id="peer-reviewed-articles" class="level1">
+<h1><strong>Peer Reviewed Articles</strong></h1>
+<p>(alphabetical)</p>
+<p class="hangingindent">
+</p><p>Bae, C. &amp; DeBusk-Lane, M. (2019). Middle school engagement: Implications for motivation and achievement in science. Learning and Individual Differences, 74, https://doi.org/10.1016/j.lindif.2019.101753</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Bae, C. &amp; DeBusk-Lane, M. (2018). Stability of motivation belief profiles in science: Links to classroom goal structures and achievement. Learning and Individual Differences, 67, 91-104. https://doi.org/10.1016/j.lindif.2018.08.003</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Bae, C., DeBusk-Lane, M., Hayes, K. &amp; Zhang, F. (2018). Opportunities to participate (OtP) in science: Examining differences longitudinally and across socioeconomically diverse schools. Research in Science Education, 1-22. https://doi.org/10.1007/s11165-018-9797-5</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Bae, C., Hayes, K., DeBusk-Lane, M. (2020). Profiles of middle school science teachers: Accounting for cognitive and motivational characteristics. Journal of Research in Science Teaching, 57(6), 911-942.</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Bae, C. L., DeBusk-Lane, M., &amp; Lester, A. M. (2020). Engagement profiles of elementary students in urban schools. Contemporary Educational Psychology, 62, 101880. https://doi.org/10.1016/j.cedpsych.2020.101880</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Cabrera, L., Bae, C., DeBusk-Lane, M. (2023). A mixed methods study of middle students’ science motivation and engagement profiles. Learning and Individual Differences, 103, https://doi.org/ 10.1016/j.lindif.2023.102281</p>
+<p>
+</p><p class="hangingindent">
+</p><p>DeBusk-Lane, M., Zumbrunn, S., Bae, C., Broda, M., Bruning, R., &amp; Sjogren, A. (2023). Variable- and Person-Centered Approaches to Examining Construct-Relevant Multidimensionality in Writing Self-Efficacy. Frontiers in Psychology, 14, https://doi.org/10.3389/fpsyg.2023.1091894</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Ekholm, E., Zumbrunn, S., &amp; DeBusk-Lane, M. (2017). Clarifying an elusive construct: A systematic review of writing attitudes. Educational Psychology Review, 30(3), 827-856. https://doi.org/10.1007/s10648-017-9423-5</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Maese, E., Diego-Rosell, P., Debusk-Lane, L., &amp; Kress, N. (2021, November). Development of emergent leadership measurement: Implications for human-machine teams. In <em>AAAI Fall Symposium</em> (pp.&nbsp;118-145). Cham: Springer Nature Switzerland.</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Redifer, J., Bae, C., &amp; DeBusk-Lane, M. (2019). Implicit Theories, Working Memory, and Cognitive Load: Impacts on Creative Thinking. SAGE Open, 9(1), 1-16. https://doi.org/10.1177/2158244019835919</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Zumbrunn, S., Ekholm, E., Stringer, J. K., McKnight, K., &amp; DeBusk-Lane, M. (2017). Student Experiences With Writing: Taking the Temperature of the Classroom. The Reading Teacher, 70(6), 667–677. https://doi.org/10.1002/trtr.1574</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Zumbrunn, S., Marrs, S., Broda, M., Ekholm, E., DeBusk-Lane, M., Jackson, L. (2019). Toward a more complete understanding of elementary writing attitudes: A mixed methods study of elementary students. AERA Open, 5(2), 1-16.</p>
+<p>
+</p><hr size="4">
+</section>
+<section id="peer-reviewed-presentations" class="level1">
+<h1><strong>Peer Reviewed Presentations</strong></h1>
+<p>(alphabetical)</p>
+<p class="hangingindent">
+</p><p>DeBusk-Lane, M., Bae, C., &amp; Lester, A. Student engagement in urban elementary schools: A Variable- and person-centered approach (Paper presented at the 2020 American Educational Research Association in San Fransisco, CA.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Bae, C. &amp; DeBusk-Lane, M., Engaging Students in Science: Measurement Invariance of Science Practices across Middle School Grades and Socioeconomic Subgroups (Paper presented at the 2017 Society for Research on Educational Effectiveness: SREE)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Bae, C., DeBusk-Lane, M., &amp; Hayes, K., Student Engagement in Middle School Science: Findings across socioeconomic subgroups (Poster presented at the 2017 American Psychological Association in Washington, D.C.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Bae, C., DeBusk-Lane, M., &amp; Hayes, K., Student Engagement in Middle School Science: Findings across socioeconomic subgroups (Paper presented at the 2018 American Educational Research Association in New York, NY.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Bae, C., DeBusk-Lane, M. Profiles of motivation in middle school science: Links to classroom structures and achievement (Poster presented at the 2018 American Psychological Association in San Francisco, CA.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>DeBusk-Lane, M. &amp; Bae, C., Students’ Engagement in Middle School Science: Measurement Invariance and Group Mean Comparisons Across Language Subgroups. (Poster presented at the 2017 Association for Psychological Science Convention, Boston, MA.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>DeBusk-Lane, M., Gnilka, P., Bae, C., Akcil, S., &amp; Fee, H. Counselor Burnout Inventory: Factor Structure and Measurement Invariance across U.S. and Turkish Professional School Counselors. (Paper presented at the 2018 American Educational Research Association, New York, NY.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>DeBusk-Lane, M., Lester, A., Zumbrunn, S. Understanding Profiles of Writing Self-Efficacy through Mixed Methods Analysis. (Poster presented at the 2018 American Educational Research Association, New York, NY.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Ekholm, E., Zumbrunn, S., &amp; DeBusk-Lane, M., Clarifying an elusive construct: A systematic review of writing attitudes. (Paper presented at the 2017 American Educational Research Association, San Antonio, TX.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Gnilka, P., DeBusk-Lane, M., Moate, R., Rice, K., Ashby, J., &amp; Zumbrunn, S., Perfectionism and the HEXACO Model of Personality. (Paper presented at the 2017 Association for Psychological Science, Boston, MA.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Jackson, L., DeBusk-Lane, M., Zumbrunn, S., &amp; Baker, A., A Qualitative Study on the Collective Efficacy and Belongingness of Undergraduate Students (Paper presented at the 2016 American Psychological Association convention, Denver, CO.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Lester, A. M., Chow, J., &amp; DeBusk-Lane, M. Adolescent Participation in Afterschool Programs: A Systematic Review and Meta-analysis. (Poster presented at the 2018 American Psychological Association, San Fransisco, CA.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Lester, A., DeBusk-Lane, M., Ekholm, E., Kunemund, R., Sterrett, B., Hope, S., … Zumbrunn, S.. Making schools more inclusive, inviting, and supportive: A community perspective. (Poster presented at Virginia Commonwealth University’s 2017 Racial Disproportionality, School Discipline, and Future Directions symposium.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Lester, A., DeBusk-Lane, M., &amp; Siegel-Hawley, G.. Investigating profiles of school level demographic change in relation to racial disproportionality in discipline. (Paper presented at the 2019 American Educational Research Association, Toronto, Canada)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Lester, A. M., DeBusk-Lane, M., &amp; Zumbrunn, S. Investigating Profiles of Students’ Writing Self-Efficacy: A Mixed Methods Approach. (Poster presented at the 2018 American Psychological Association, San Fransisco, CA.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Love, S., Rufer, L., DeBusk-Lane, M., &amp; Zumbrunn, S., Exploring Student Athlete Motivation in Academics and Athletics. (Paper presented at the 2016 American Psychological Association convention, Denver, CO.).</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Maese, E., Diego-Roosell, P., Srinivasan, R., Bikus, Z., DeBusk-Lane, M., Davoodi, T., Van Klinken, M., Foy, D., Food Insecurity in Context: Developing Mental Models of Local Knowledge in Halabja, Iraq. (Presentation to the American Public Health Association, 2022).</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Marrs, S. A., Zumbrunn, S. K., Jackson, L. O., Ekholm, E., DeBusk-Lane, M.. Exploring elementary students’ preferences for writing tasks. (Poster presented at the 2017 meeting of the American Psychological Association, Washington, D.C.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Redifer, J. Bae, C., &amp; DeBusk-Lane, M., Cognitive Load Mediates the Relationship Between Implicit Beliefs and Creative Thinking Scores. (Poster presented at the 2017 Association for Psychological Science, Boston, MA.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Siegel-Hawley, G, DeBusk-Lane, M., Lester, A., Naff, D., &amp; Palencia, V. Race, place, and exclusion: The metropolitan landscape of racial inequity in school discipline. (Paper presented at the 2019 American Educational Research Association, Toronto, Canada)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Sjogren, A., DeBusk-Lane, M., &amp; Bae, C. Student engagement across contexts. (Symposium presented at the 2021 American Educational Research Association, Virtual Meeting).</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Stringer, J., DeBusk-Lane, M., Zumbrunn, S., &amp; Walsh, M., Academic self-concept: A qualitative approach. (Paper presented at the 2016 American Psychological Association convention, Denver, CO.).</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Zumbrunn, S., Ekholm, E., Stringer, J., McKnight, K., &amp; DeBusk-Lane, M., Exploring the experience of writing through student drawings. (Paper presented at the 2016 American Psychological Association convention, Denver, CO.).</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Zumbrunn, S., Marrs, S., Jackson, L., Broda, M., Ekholm, E., &amp; DeBusk-Lane, M., Student perceptions of teacher and peer enthusiasm for writing, writing attitudes, and writing self-regulation: A mixed methods study. (Paper presented at the meeting of the 2017 American Educational Research Association, San Antonio, TX.)</p>
+<p>
+</p><p class="hangingindent">
+</p><p>Zumbrunn, S., Marrs, S., Malmberg, L., Ekholm, E., Broda, M., &amp; DeBusk-Lane, M., Individual differences and the development of multiple dimensions of writing self-efficacy. (Paper presented at the 2018 International Conference of the EARLI Special Interest Group on Writing, Antwerp, Belgium)</p>
+<p>
+</p><hr size="4">
+</section>
+<section id="peer-reviewed-reports" class="level1 page-columns page-full">
+<h1><strong>Peer Reviewed Reports</strong></h1>
+<p class="hangingindent">
+</p><p>Siegel-Hawley, G., Tefera, A. A., Naff, D., Lester, A., Levy, R., Palencia, V., Parry, M., &amp; DeBusk-Lane, M. (2019). Understanding racial inequities in school discipline across the Richmond region. Richmond, VA: Metropolitan Educational Research Consortium.</p>
+<p>
+</p><div class="column-page-inset text-center">
+<a class="btn btn-outline-light" ,="" href="https://twitter.com/mldebusklane" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-twitter" role="img" aria-label="Twitter"></i>
+</a>
+<a class="btn btn-outline-light" ,="" href="https://github.com/debusklaneml" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-github" role="img" aria-label="Github"></i>
+</a>
+<a class="btn btn-outline-light" ,="" href="www.linkedin.com/in/debusklaneml" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-linkedin" role="img" aria-label="LinkedIn"></i>
+</a>
+
+<a class="btn btn-outline-light" ,="" href="mailto:mldebusklane@gmail.com" target="_blank" rel="noopener noreferrer">
+    <i class="ai bi-envelope" role="img" aria-label="email"></i>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="Creativity,Cognitive Load,Implicit Theories,Intelligence" data-listing-date-sort="1546318800000" data-listing-file-modified-sort="1661131131507" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="146">
-<a href="./research/jr_cb_md_2019/jr_cb_md_2019.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/jr_cb_md_2019/featured.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Implicit Theories, Working Memory, and Cognitive Load: Impacts on Creative Thinking
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Creativity'); return false;">
-Creativity
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Cognitive Load'); return false;">
-Cognitive Load
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Implicit Theories'); return false;">
-Implicit Theories
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Intelligence'); return false;">
-Intelligence
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Jan 1, 2019
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="Motivation,LPA" data-listing-date-sort="1546318800000" data-listing-file-modified-sort="1662078364421" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="182">
-<a href="./research/cb_kh_md_2019/cb_kh_md_2019.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/cb_kh_md_2019/featured.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Profiles of middle school science teachers: Accounting for cognitive and motivational characteristics
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Motivation'); return false;">
-Motivation
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('LPA'); return false;">
-LPA
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Jan 1, 2019
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="Motivation,LPA" data-listing-date-sort="1546318800000" data-listing-file-modified-sort="1661129437797" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="200">
-<a href="./research/cb_mldl_LID_2019/cb_mldl_LID_2019.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/cb_mldl_LID_2019/featured.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Middle school engagement profiles: Implications for motivation and achievement in science
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Motivation'); return false;">
-Motivation
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('LPA'); return false;">
-LPA
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Jan 1, 2019
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="Motivation,LPA" data-listing-date-sort="1533355200000" data-listing-file-modified-sort="1661130661624" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="161">
-<a href="./research/cb_md_2018/cb_md_2018.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/cb_md_2018/featured.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Motivation belief profiles in science: Links to classroom goal structures and achievement
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Motivation'); return false;">
-Motivation
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('LPA'); return false;">
-LPA
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Aug 4, 2018
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="Motivation,SEM,Measurement Invariance" data-listing-date-sort="1514782800000" data-listing-file-modified-sort="1661130755352" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="250">
-<a href="./research/cb_md_kh_fz_2018/cb_md_kh_fz_2018.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/cb_md_kh_fz_2018/featured.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Opportunities to Participate (OtP) in Science: Examining Differences Longitudinally and Across Socioeconomically Diverse Schools.
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Motivation'); return false;">
-Motivation
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('SEM'); return false;">
-SEM
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Measurement Invariance'); return false;">
-Measurement Invariance
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Jan 1, 2018
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="6" data-categories="Motivation" data-listing-date-sort="1514782800000" data-listing-file-modified-sort="1661130904014" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="208">
-<a href="./research/ee_sz_md_2017/ee_sz_md_2017.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/ee_sz_md_2017/featured.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Clarifying an Elusive Construct: a Systematic Review of Writing Attitudes
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Motivation'); return false;">
-Motivation
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Jan 1, 2018
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="7" data-categories="Motivation" data-listing-date-sort="1483246800000" data-listing-file-modified-sort="1661131305404" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="41">
-<a href="./research/sz_ee_js_km_md_2017/sz_ee_js_km_md_2017.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/sz_ee_js_km_md_2017/featured.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Student Experiences With Writing: Taking the Temperature of the Classroom
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Motivation'); return false;">
-Motivation
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Jan 1, 2017
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

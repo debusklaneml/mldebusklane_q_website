@@ -1,0 +1,21 @@
+---
+title: "Variable- and person-centered approaches to examining construct-relevant multidimensionality in writing self-efficacy"
+authors: [M. L. DeBusk-Lane, Sharon Zumbrunn, Christine L. Bae, Michael Broda, Roger Bruning, Ashlee Sjogren]
+date: "2023-02-20"
+doi: "https://doi.org/10.3389/fpsyg.2023.1091894"
+publishDate: "2023-02-20"
+summary: Multidimensionality of Writing Self-Efficacy.
+categories:
+  - Motivation
+  - LPA
+  - b-esem
+image: /research/mldl_2023/mldl_2023.png
+---
+::: {.column-page-inset .text-center}
+```{=html}
+<a class="btn btn-outline-danger btn-lg" href="/research/mldl_2023/mldl_2023.pdf" target="_blank" rel="noopener">PDF</a>
+```
+:::
+
+
+"Self-efficacy is an essential component of students’ motivation and success in writing. There have been great advancements in our theoretical understanding of writing self-efficacy over the past 40 years; however, there is a gap in how we empirically model the multidimensionality of writing self-efficacy. The purpose of the present study was to examine the multidimensionality of writing self- efficacy, and present validity evidence for the adapted Self-Efficacy for Writing Scale (SEWS) through a series of measurement model comparisons and person-centered approaches. Using a sample of 1,466 8th–10th graders, results showed that a bifactor exploratory structural equation model best represented the data, demonstrating that the SEWS exhibits both construct-relevant multidimensionality and the presence of a global theme. Using factor scores derived from this model, we conducted latent profile analysis to further establish validity of the measurement model and examine how students disaggregate into groups based on their response trends of the SEWS. Three profiles emerged, differentiated by global writing self-efficacy, with substantively varying factor differences among the profiles. Concurrent, divergent, and discriminant validity evidence was established through a series of analyses that assessed predictors and outcomes of the profiles (e.g., demographics, standardized writing assessments, and grades). Theoretical and practical implications and avenues for future research are discussed."
