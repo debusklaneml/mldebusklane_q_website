@@ -1,31 +1,25 @@
 ---
-title: 'M. L. DeBusk-Lane, Ph.D.'
-image: images/hs.jpeg
 toc: false
-about:
-  template: trestles
-  image-shape: round
-  image-width: 20em
-  links:
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com/mldebusklane
-    - icon: github
-      text: GitHub
-      href: https://github.com/debusklaneml
-    - icon: linkedin
-      text: LinkedIn
-      href: https://linkedin.com/in/debusklaneml
-    - icon: envelope
-      text: Email
-      href: mailto:mldebusklane@gmail.com
 ---
 
+<div style="text-align: center; max-width: 800px; margin: 0 auto;">
+
 # Hi There!
-Welcome. This is a site that I've put together (with R) to help communicate (and store) many of the things I'm interested in, who I am, and what I do. Thanks for coming. All opinions my own. 
+Welcome. This site is where I share my work, ideas, and interests. Thanks for stopping by. All opinions are my own.
 
-# Who I am: 
-I enjoy learning, using data to answer cool questions, and spending time with my family, friends, and dogs. I live in Richmond, Va.
+# Who I am:
+I enjoy learning, using data to answer interesting questions, and spending time with my family, friends, and dogs. I live in Richmond, VA.
 
-# What I do: 
-I am currently a Computational Social Scientist at Gallup where I get to answer cool questions with world data, use fancy statistics, and help build really cool partnerships across DOD, other government agencies, and the public sector. 
+# What I do:
+I'm currently a Principal Data Scientist at Gallup where I get to answer complex questions with world data, use advanced statistics, and help build meaningful partnerships across DOD, other government agencies, and the public sector.
+
+</div>
+
+<div style="text-align: center; margin-top: 4em; padding-top: 2em; border-top: 1px solid var(--terminal-border);">
+
+[{{< fa brands x-twitter >}}](https://twitter.com/mldebusklane) |
+[{{< fa brands github >}}](https://github.com/debusklaneml) |
+[{{< fa brands linkedin >}}](https://linkedin.com/in/debusklaneml) |
+[{{< fa envelope >}}](mailto:mldebusklane@gmail.com)
+
+</div> 
