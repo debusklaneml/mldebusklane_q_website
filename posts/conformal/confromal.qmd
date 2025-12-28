@@ -8,8 +8,6 @@ image: /posts/conformal/conformal.png
 
 ```{r}
 
-# Description of file here
-
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse, explore, tidylog, skimr, plotly, 
                performance, mgcv, quantregForest,
