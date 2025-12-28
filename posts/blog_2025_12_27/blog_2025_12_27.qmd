@@ -2,11 +2,7 @@
 title: "Writing again..."
 date: '2025-12-27'
 categories: [Writing]
-image: /posts/conformal/conformal.png
-# output: 
-#   html_document:
-#     theme: journal
-#     highlight: zenburn
+image: /posts/blog_2025_12_27/IMG_9520.jpeg
 ---
 
 # Writing again...
@@ -39,4 +35,8 @@ I dont blame them--writing is hard.
 
 ---
 
-To that, I plan to write more this upcoming year. I'll write about psychology, learning, education, and statistics. I'll probably also write about life. I'll write because I want to. x`
+To that, I plan to write more this upcoming year. I'll write about psychology, learning, education, and statistics. I'll probably also write about life. I'll write because I want to.
+
+::: {.post-metadata}
+**Categories:** Writing
+::: 

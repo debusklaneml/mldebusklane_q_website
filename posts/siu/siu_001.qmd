@@ -3,14 +3,9 @@ title: "Stuff I Use 001: Sentence Embeddings for Classification"
 description: "Stuff I Use is a blog series where I try to document advanced cool or interesting methods that I get to use on a day to day basis."
 date: 06-15-2024
 categories: [R, Python, Transformers, NLP] # self-defined categories
-citation: 
+citation:
   url: https://www.mldebusklane.com/posts/siu/siu_001.html
 image: /posts/siu/hf.png
-output: 
-  html_document:
-    theme: journal
-    highlight: zenburn
-    
 draft: false
 ---
 

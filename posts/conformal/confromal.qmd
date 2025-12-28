@@ -3,11 +3,8 @@ title: "Conformal Prediction"
 date: '2024-06-30'
 categories: [R, Conformal]
 image: /posts/conformal/conformal.png
-output: 
-  html_document:
-    theme: journal
-    highlight: zenburn
 ---
+# Conformal Prediction
 
 ```{r}
 

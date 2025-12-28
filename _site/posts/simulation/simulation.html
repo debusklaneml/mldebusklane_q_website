@@ -9510,6 +9510,83 @@ box-sizing: border-box;
 i, .bi, .fa {
 color: inherit;
 }
+
+#quarto-appendix {
+background-color: var(--terminal-bg);
+color: var(--terminal-text);
+border-top: 1px solid var(--terminal-border);
+padding-top: 2em;
+margin-top: 3em;
+}
+#quarto-appendix h2 {
+color: var(--terminal-text);
+}
+#quarto-appendix .quarto-appendix-secondary-label {
+color: var(--terminal-text);
+}
+#quarto-appendix pre,
+#quarto-appendix code {
+background-color: var(--terminal-code-bg);
+color: var(--terminal-text);
+border-color: var(--terminal-border);
+}
+body.dark-mode #quarto-appendix {
+background-color: var(--terminal-bg);
+border-top-color: var(--terminal-border);
+}
+body.dark-mode #quarto-appendix h2,
+body.dark-mode #quarto-appendix .quarto-appendix-secondary-label,
+body.dark-mode #quarto-appendix div,
+body.dark-mode #quarto-appendix .csl-entry {
+color: var(--terminal-text) !important;
+}
+
+
+#title-block-header {
+display: none !important;
+}
+
+body:has(main.content > div[style*="text-align: center"]) #title-block-header,
+.quarto-title-block.default #title-block-header {
+display: block !important;
+background: none !important;
+padding: 0 !important;
+margin-bottom: 0 !important;
+border: none !important;
+}
+body:has(main.content > div[style*="text-align: center"]) #title-block-header .title {
+background: none !important;
+padding: 0 !important;
+margin: 0 !important;
+color: var(--terminal-text) !important;
+}
+
+.quarto-category {
+display: inline-block;
+padding: 0.4em 0.8em;
+background-color: var(--terminal-code-bg);
+border: 1px solid var(--terminal-border);
+border-radius: 4px;
+font-size: 0.9em;
+color: var(--terminal-text);
+font-weight: 500;
+}
+body.dark-mode .quarto-category {
+background-color: #2a2a2a;
+border-color: var(--terminal-border);
+}
+
+.post-metadata {
+margin-top: 3em;
+padding-top: 1.5em;
+border-top: 1px solid var(--terminal-border);
+color: var(--terminal-text);
+font-size: 0.9em;
+}
+body.dark-mode .post-metadata {
+border-top-color: var(--terminal-border);
+color: var(--terminal-text);
+}
 </style>
 <style type="text/css">
 .hangingindent {
@@ -9600,7 +9677,8 @@ text-indent: -45px ;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-statistical-simulation-and-why-should-you-care" id="toc-what-is-statistical-simulation-and-why-should-you-care" class="nav-link active" data-scroll-target="#what-is-statistical-simulation-and-why-should-you-care">What is statistical simulation and why should you care?</a></li>
+  <li><a href="#simulation-part-0" id="toc-simulation-part-0" class="nav-link active" data-scroll-target="#simulation-part-0">Simulation: Part 0</a></li>
+  <li><a href="#what-is-statistical-simulation-and-why-should-you-care" id="toc-what-is-statistical-simulation-and-why-should-you-care" class="nav-link" data-scroll-target="#what-is-statistical-simulation-and-why-should-you-care">What is statistical simulation and why should you care?</a></li>
   <li><a href="#utility-of-simulation" id="toc-utility-of-simulation" class="nav-link" data-scroll-target="#utility-of-simulation">Utility of Simulation</a></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
   <li><a href="#python-version" id="toc-python-version" class="nav-link" data-scroll-target="#python-version">Python Version</a></li>
@@ -9614,12 +9692,15 @@ text-indent: -45px ;
 
 
 
+<section id="simulation-part-0" class="level1">
+<h1>Simulation: Part 0</h1>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: pacman</code></pre>
 </div>
 </div>
 <p>This blog post will be the first in a series that will explore how social scientists, or at least those that tend to span across and into more traditional data science, can leverage and employ simulation techniques into their workflow. At the least, this series will introduce the reader to what statistical simulation is, the very basics, and how it can be used to better understand how a variety of statistical methods function across broad data situations.</p>
+</section>
 <section id="what-is-statistical-simulation-and-why-should-you-care" class="level1">
 <h1>What is statistical simulation and why should you care?</h1>
 <p>In our case, it’s the process of making fake data in a programmatic way. Statistical simulation is a powerful tool that allows us to create and analyze data in a controlled environment. By simulating data, we can explore the behavior of statistical models under various conditions—conditions that may be rare or difficult to observe in the real world. This is particularly useful when working with complex models or when trying to understand the impact of different data characteristics on statistical inference.</p>

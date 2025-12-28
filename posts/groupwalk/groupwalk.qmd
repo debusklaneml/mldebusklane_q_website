@@ -2,25 +2,22 @@
 title: group_walk
 date: '2020-02-25'
 image: /posts/groupwalk/dplyr.png
-categories: 
+categories:
   - Code
   - R
-
-output: 
-  html_document:
-    theme: journal
-    highlight: zenburn
 ---
 
+# Exploring Group Walk
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE, 
+knitr::opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE,
                       echo = TRUE, dpi = 300, cache.lazy = FALSE,
-                      tidy = "styler", fig.width = 8, fig.height = 7)
+                      tidy = "styler", fig.width = 8, fig.height = 7,
+                      eval = FALSE)
 ```
 
 I ran across this little gem at work today trying to build a function to easily iterate out a series of excel files (`.xlsx`) that needed to be generated from an identifier column in a larger dataset. Lets take a look.
 
-```{r, message=FALSE}
+```{r, message=FALSE, eval=FALSE}
 library(tidyverse)
 library(writexl)
 ```

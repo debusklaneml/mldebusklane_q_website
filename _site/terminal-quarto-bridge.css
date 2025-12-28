@@ -633,3 +633,102 @@ html {
 i, .bi, .fa {
   color: inherit;
 }
+
+/* ============================================
+   Quarto Appendix (Reuse & Citation)
+   ============================================ */
+
+#quarto-appendix {
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  border-top: 1px solid var(--terminal-border);
+  padding-top: 2em;
+  margin-top: 3em;
+}
+
+#quarto-appendix h2 {
+  color: var(--terminal-text);
+}
+
+#quarto-appendix .quarto-appendix-secondary-label {
+  color: var(--terminal-text);
+}
+
+#quarto-appendix pre,
+#quarto-appendix code {
+  background-color: var(--terminal-code-bg);
+  color: var(--terminal-text);
+  border-color: var(--terminal-border);
+}
+
+body.dark-mode #quarto-appendix {
+  background-color: var(--terminal-bg);
+  border-top-color: var(--terminal-border);
+}
+
+body.dark-mode #quarto-appendix h2,
+body.dark-mode #quarto-appendix .quarto-appendix-secondary-label,
+body.dark-mode #quarto-appendix div,
+body.dark-mode #quarto-appendix .csl-entry {
+  color: var(--terminal-text) !important;
+}
+
+/* ============================================
+   Title Block - Remove banner styling
+   ============================================ */
+
+/* Hide the title block completely by default (for posts) */
+#title-block-header {
+  display: none !important;
+}
+
+/* Show title block on index.html only, but without banner styling */
+body:has(main.content > div[style*="text-align: center"]) #title-block-header,
+.quarto-title-block.default #title-block-header {
+  display: block !important;
+  background: none !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+  border: none !important;
+}
+
+body:has(main.content > div[style*="text-align: center"]) #title-block-header .title {
+  background: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: var(--terminal-text) !important;
+}
+
+/* Style categories when they appear in the appendix or elsewhere */
+.quarto-category {
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  background-color: var(--terminal-code-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--terminal-text);
+  font-weight: 500;
+}
+
+body.dark-mode .quarto-category {
+  background-color: #2a2a2a;
+  border-color: var(--terminal-border);
+}
+
+/* ============================================
+   Post Metadata Footer (Categories at bottom)
+   ============================================ */
+
+.post-metadata {
+  margin-top: 3em;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--terminal-border);
+  color: var(--terminal-text);
+  font-size: 0.9em;
+}
+
+body.dark-mode .post-metadata {
+  border-top-color: var(--terminal-border);
+  color: var(--terminal-text);
+}
