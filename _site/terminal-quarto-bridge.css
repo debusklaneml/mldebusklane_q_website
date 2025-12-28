@@ -1,0 +1,734 @@
+/* ============================================
+   Terminal.css + Quarto Bridge Styles
+   Bridges terminal.css styling with Quarto's HTML structure
+   ============================================ */
+
+/* Root Variables for Terminal Theme */
+:root {
+  --terminal-bg: #ffffff;
+  --terminal-text: #000000;
+  --terminal-link: #1a95e0;
+  --terminal-link-hover: #0d7ac4;
+  --terminal-accent: #1a95e0;
+  --terminal-border: #ccc;
+  --terminal-code-bg: #f4f4f4;
+  --font-stack: 'JetBrains Mono', 'Berkeley Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+  --terminal-bg: #1a1a1a;
+  --terminal-text: #ffffff;
+  --terminal-link: #66b3ff;
+  --terminal-link-hover: #99ccff;
+  --terminal-accent: #66b3ff;
+  --terminal-border: #666;
+  --terminal-code-bg: #2a2a2a;
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+}
+
+/* Global Typography */
+body {
+  font-family: var(--font-stack);
+  font-size: 15px;
+  line-height: 1.6;
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding-bottom: 100px;
+}
+
+/* Ensure all text elements inherit the correct color */
+body.dark-mode,
+body.dark-mode p,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode div,
+body.dark-mode span,
+body.dark-mode li {
+  color: var(--terminal-text) !important;
+}
+
+/* Override Bootstrap Container Width */
+.container-fluid,
+.container {
+  max-width: 60em;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+/* ============================================
+   Navigation Bar Styling
+   ============================================ */
+
+/* Override Quarto's navbar */
+#quarto-header {
+  background-color: var(--terminal-bg);
+  border-bottom: 2px solid var(--terminal-border);
+  padding: 1.5em 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Bootstrap navbar override */
+.navbar {
+  background-color: transparent !important;
+  border: none;
+  padding: 0;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 2em;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+.nav-item {
+  margin: 0;
+}
+
+.nav-link {
+  color: var(--terminal-text) !important;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  border: none;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: rgba(128, 128, 128, 0.1);
+  color: var(--terminal-accent) !important;
+}
+
+body.dark-mode .nav-link:hover,
+body.dark-mode .nav-link.active {
+  background-color: #333333;
+}
+
+.navbar-brand {
+  color: var(--terminal-text) !important;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+/* ============================================
+   Theme Toggle Button
+   ============================================ */
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  padding: 0.25em;
+  font-size: 1em;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  z-index: 1001;
+}
+
+body.dark-mode .theme-toggle {
+  background: transparent;
+  border: none;
+}
+
+.theme-toggle:hover {
+  opacity: 1;
+}
+
+/* ============================================
+   Links
+   ============================================ */
+
+a {
+  color: var(--terminal-link);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--terminal-link);
+}
+
+a:hover {
+  color: var(--terminal-link-hover);
+  border-bottom-style: solid;
+}
+
+/* Remove border from nav links */
+.nav-link {
+  border-bottom: none !important;
+}
+
+/* ============================================
+   Headings
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-stack);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: var(--terminal-text);
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.25em; }
+
+/* ============================================
+   Code Blocks
+   ============================================ */
+
+code {
+  font-family: var(--font-stack);
+  background-color: var(--terminal-code-bg);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  color: var(--terminal-text);
+}
+
+pre {
+  background-color: var(--terminal-code-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  padding: 1em;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+}
+
+/* Quarto syntax highlighting adjustment */
+body.dark-mode .sourceCode,
+body.dark-mode pre {
+  background-color: #2a2a2a;
+  border-color: #666;
+}
+
+body.dark-mode code {
+  background-color: #2a2a2a;
+}
+
+/* Code copy button */
+.code-copy-button {
+  background-color: var(--terminal-bg);
+  border: 1px solid var(--terminal-border);
+  color: var(--terminal-text);
+  font-family: var(--font-stack);
+  padding: 0.25em 0.5em;
+  font-size: 0.8em;
+  border-radius: 3px;
+}
+
+.code-copy-button:hover {
+  background-color: var(--terminal-accent);
+  color: white;
+}
+
+/* ============================================
+   Quarto Listings (Posts/Research Pages)
+   ============================================ */
+
+.quarto-listing {
+  margin: 2em 0;
+}
+
+.quarto-listing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2em;
+}
+
+.quarto-grid-item {
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  padding: 1em;
+  background-color: var(--terminal-bg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quarto-grid-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .quarto-grid-item:hover {
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.quarto-grid-item h3,
+.quarto-grid-item h5 {
+  margin-top: 0.5em;
+}
+
+.quarto-grid-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 1em;
+}
+
+/* Listing category filters */
+.quarto-listing-category {
+  margin: 1em 0;
+}
+
+.quarto-listing-category .category {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  margin: 0.25em;
+  background-color: var(--terminal-code-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: 3px;
+  font-size: 0.85em;
+  cursor: pointer;
+}
+
+.quarto-listing-category .category:hover,
+.quarto-listing-category .category.active {
+  background-color: var(--terminal-accent);
+  color: white;
+  border-color: var(--terminal-accent);
+}
+
+/* ============================================
+   About Page (index.qmd with trestles template)
+   ============================================ */
+
+.about-entity {
+  margin: 2em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.about-entity img {
+  border-radius: 50%;
+  border: 3px solid var(--terminal-border);
+  margin-bottom: 1em;
+}
+
+.about-links {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  margin: 1em 0;
+  justify-content: center;
+}
+
+.about-link {
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  background-color: var(--terminal-bg);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.about-link:hover {
+  background-color: var(--terminal-accent);
+  color: white !important;
+  border-color: var(--terminal-accent);
+  border-bottom: 1px solid var(--terminal-accent) !important;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.btn,
+.btn-outline-danger,
+.btn-outline-light,
+button {
+  font-family: var(--font-stack);
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  border: 1px solid var(--terminal-border);
+  background-color: transparent;
+  color: var(--terminal-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover,
+button:hover {
+  background-color: var(--terminal-accent);
+  color: white;
+  border-color: var(--terminal-accent);
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+.footer,
+.nav-footer {
+  border-top: 2px solid var(--terminal-border);
+  padding: 1em 0;
+  margin-top: 2em;
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.nav-footer a {
+  color: var(--terminal-link);
+}
+
+.nav-footer a:hover {
+  color: var(--terminal-link-hover);
+}
+
+/* ============================================
+   Search Overlay
+   ============================================ */
+
+#quarto-search {
+  color: var(--terminal-text);
+}
+
+.aa-DetachedSearchButton {
+  background-color: var(--terminal-bg) !important;
+  border: 1px solid var(--terminal-border) !important;
+  color: var(--terminal-text) !important;
+  font-family: var(--font-stack) !important;
+  border-radius: 4px;
+}
+
+.aa-Autocomplete,
+.aa-Panel {
+  background-color: var(--terminal-bg) !important;
+  border: 1px solid var(--terminal-border) !important;
+  border-radius: 4px;
+  font-family: var(--font-stack);
+}
+
+.aa-Item {
+  color: var(--terminal-text) !important;
+}
+
+.aa-Item[aria-selected='true'] {
+  background-color: var(--terminal-accent) !important;
+  color: white !important;
+}
+
+.aa-DetachedFormContainer {
+  background-color: var(--terminal-bg) !important;
+}
+
+/* ============================================
+   Tables
+   ============================================ */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  font-family: var(--font-stack);
+}
+
+th, td {
+  border: 1px solid var(--terminal-border);
+  padding: 0.5em;
+  text-align: left;
+}
+
+th {
+  background-color: var(--terminal-code-bg);
+  font-weight: 700;
+}
+
+body.dark-mode th {
+  background-color: #2a2a2a;
+}
+
+/* ============================================
+   CV Page Specific Styles
+   ============================================ */
+
+.cv-section {
+  margin: 2em 0;
+}
+
+.cv-section h1,
+.cv-section h2,
+.cv-section h3 {
+  border-bottom: 1px solid var(--terminal-border);
+  padding-bottom: 0.5em;
+  margin-top: 1.5em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--terminal-border);
+  margin: 2em 0;
+}
+
+/* Social media buttons at bottom of CV */
+.column-page-inset .btn {
+  margin: 0.5em;
+}
+
+/* ============================================
+   R/Python Code Execution Output
+   ============================================ */
+
+.cell-output-display {
+  background-color: var(--terminal-bg);
+  padding: 1em;
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  margin: 1em 0;
+}
+
+body.dark-mode .cell-output-display {
+  border-color: var(--terminal-border);
+}
+
+/* ggplot2 and plotly outputs */
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.cell-output img {
+  border-radius: 4px;
+  margin: 1em 0;
+}
+
+/* ============================================
+   Blockquotes
+   ============================================ */
+
+blockquote {
+  border-left: 3px solid var(--terminal-accent);
+  margin: 1em 0;
+  padding-left: 1em;
+  color: var(--terminal-text);
+  font-style: italic;
+}
+
+/* ============================================
+   Lists
+   ============================================ */
+
+ul, ol {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+li {
+  margin: 0.5em 0;
+}
+
+/* ============================================
+   TOC (Table of Contents)
+   ============================================ */
+
+.toc-actions,
+#TOC {
+  background-color: var(--terminal-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  padding: 1em;
+  font-family: var(--font-stack);
+}
+
+#TOC a {
+  color: var(--terminal-link);
+  text-decoration: none;
+  border-bottom: none;
+}
+
+#TOC a:hover {
+  color: var(--terminal-link-hover);
+}
+
+#TOC ul {
+  list-style: none;
+  padding-left: 1em;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media screen and (max-width: 960px) {
+  .navbar-nav {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  #quarto-header {
+    padding: 1em 0;
+  }
+
+  .theme-toggle {
+    top: 10px;
+    right: 10px;
+  }
+
+  .quarto-listing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container-fluid,
+  .container {
+    padding: 0 0.5em;
+  }
+
+  h1 { font-size: 1.5em; }
+  h2 { font-size: 1.25em; }
+  h3 { font-size: 1.1em; }
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fix any layout issues */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure icons inherit color */
+i, .bi, .fa {
+  color: inherit;
+}
+
+/* ============================================
+   Quarto Appendix (Reuse & Citation)
+   ============================================ */
+
+#quarto-appendix {
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  border-top: 1px solid var(--terminal-border);
+  padding-top: 2em;
+  margin-top: 3em;
+}
+
+#quarto-appendix h2 {
+  color: var(--terminal-text);
+}
+
+#quarto-appendix .quarto-appendix-secondary-label {
+  color: var(--terminal-text);
+}
+
+#quarto-appendix pre,
+#quarto-appendix code {
+  background-color: var(--terminal-code-bg);
+  color: var(--terminal-text);
+  border-color: var(--terminal-border);
+}
+
+body.dark-mode #quarto-appendix {
+  background-color: var(--terminal-bg);
+  border-top-color: var(--terminal-border);
+}
+
+body.dark-mode #quarto-appendix h2,
+body.dark-mode #quarto-appendix .quarto-appendix-secondary-label,
+body.dark-mode #quarto-appendix div,
+body.dark-mode #quarto-appendix .csl-entry {
+  color: var(--terminal-text) !important;
+}
+
+/* ============================================
+   Title Block - Remove banner styling
+   ============================================ */
+
+/* Hide the title block completely by default (for posts) */
+#title-block-header {
+  display: none !important;
+}
+
+/* Show title block on index.html only, but without banner styling */
+body:has(main.content > div[style*="text-align: center"]) #title-block-header,
+.quarto-title-block.default #title-block-header {
+  display: block !important;
+  background: none !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+  border: none !important;
+}
+
+body:has(main.content > div[style*="text-align: center"]) #title-block-header .title {
+  background: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: var(--terminal-text) !important;
+}
+
+/* Style categories when they appear in the appendix or elsewhere */
+.quarto-category {
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  background-color: var(--terminal-code-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--terminal-text);
+  font-weight: 500;
+}
+
+body.dark-mode .quarto-category {
+  background-color: #2a2a2a;
+  border-color: var(--terminal-border);
+}
+
+/* ============================================
+   Post Metadata Footer (Categories at bottom)
+   ============================================ */
+
+.post-metadata {
+  margin-top: 3em;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--terminal-border);
+  color: var(--terminal-text);
+  font-size: 0.9em;
+}
+
+body.dark-mode .post-metadata {
+  border-top-color: var(--terminal-border);
+  color: var(--terminal-text);
+}
