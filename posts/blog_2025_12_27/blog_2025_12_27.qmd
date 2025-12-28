@@ -1,0 +1,42 @@
+---
+title: "Writing again..."
+date: '2025-12-27'
+categories: [Writing]
+image: /posts/blog_2025_12_27/IMG_9520.jpeg
+---
+
+# Writing again...
+
+What is it to write? Why do we write? Does anyone really want to read the words I write? Does that even matter?
+
+All valid questions, all valid things to think about. 
+
+## Perspective:
+
+My current role is less defined by my title and more defined by the scope for which I operate. For the past year I have been the Principal Data Scientist at Gallup. Which, given the paragraph opener, is not informative at all. I plan to write an entire post about what the last year has been, but in short I am consistently enveloped with technology, new technology, exploring how it can operate at our company and how it might change analytics for us. 
+
+That said, I miss writing. I miss the focus it requires, the creativity it allows to construct a sentence, paragraph, and longer message of intent. I miss that. 
+
+I dont write because I have a story to tell. 
+
+I dont feel like I'm misunderstood. 
+
+I dont feel like I have anything particularly important to say to anyone of any importance. 
+
+I write because I feel like I should. I write because, to me, there is value is expression in it. There is feeling in it. There is 'learning' in it. Perhaps there is a path to writing something that someone might want to read. Perhaps not. 
+
+Harper Lee said “Any writer worth his salt writes to please himself…It’s a self-exploratory operation that is endless. An exorcism of not necessarily his demon, but of his divine discontent.” 
+
+Perhaps that's it. 
+
+I'll say this: I wrote a lot in graduate school. I felt comfortable taking thought and then organizing those thoughts into words on paper that articulated such thoughts in a clear and consice way. The operative part there was 'comfortable.' That is, I felt closer to being able to communicate difficult or complex topics with releative ease. That is, apparently, a muscle that atrophies. I found value in it and I just dont really use it much anymore. I currently exist in a world where prompting your way to a paragraph is the easiest route people take these days. 
+
+I dont blame them--writing is hard. 
+
+---
+
+To that, I plan to write more this upcoming year. I'll write about psychology, learning, education, and statistics. I'll probably also write about life. I'll write because I want to.
+
+::: {.post-metadata}
+**Categories:** Writing
+::: 

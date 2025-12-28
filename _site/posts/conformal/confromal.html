@@ -63,10 +63,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -81,18 +77,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -127,7 +111,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">M. L. DeBusk-Lane, Ph.D.</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -197,7 +180,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data-simulation" id="toc-data-simulation" class="nav-link active" data-scroll-target="#data-simulation">Data Simulation:</a></li>
+  <li><a href="#conformal-prediction" id="toc-conformal-prediction" class="nav-link active" data-scroll-target="#conformal-prediction">Conformal Prediction</a></li>
+  <li><a href="#data-simulation" id="toc-data-simulation" class="nav-link" data-scroll-target="#data-simulation">Data Simulation:</a></li>
   <li><a href="#split-conformal-intervals" id="toc-split-conformal-intervals" class="nav-link" data-scroll-target="#split-conformal-intervals">Split Conformal Intervals</a></li>
   <li><a href="#conformalized-quantile-regression" id="toc-conformalized-quantile-regression" class="nav-link" data-scroll-target="#conformalized-quantile-regression">Conformalized Quantile Regression</a></li>
   </ul>
@@ -210,6 +194,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<section id="conformal-prediction" class="level1">
+<h1>Conformal Prediction</h1>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Description of file here</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -225,6 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Conformal prediction is notably non-parametric and distribution-free, meaning it is not constrained by the underlying distribution of your data. This characteristic lends it exceptional flexibility, making it applicable across various types of models. It is effective for both classification and regression problems, regardless of the specific model used.</p>
 <p>Despite aligning with the frequentist perspective in quantifying uncertainty, conformal prediction provides a robust guarantee regarding the error bounds. It ensures that these bounds will encompass the true outcome within a specified confidence level. This makes it a reliable tool for making predictions with quantifiable certainty.</p>
 <p>This post will cover a few different ways to compute prediction intervals.</p>
+</section>
 <section id="data-simulation" class="level1">
 <h1>Data Simulation:</h1>
 <p>Lets start by generating data often found in the real world. These data will produce a probability that ranges from 0 to 1. This will let me flip this to a classification problem later.</p>
@@ -715,8 +702,8 @@ L. DeBusk-Lane, M. 2024. <span>“Conformal Prediction.”</span> June 30,
 (function() {
   'use strict';
 
-  // Check for saved theme preference or default to light mode
-  const currentTheme = localStorage.getItem('theme') || 'light';
+  // Check for saved theme preference or default to dark mode
+  const currentTheme = localStorage.getItem('theme') || 'dark';
 
   // Apply theme on page load (before page renders to prevent flash)
   if (currentTheme === 'dark') {
@@ -1195,13 +1182,13 @@ L. DeBusk-Lane, M. 2024. <span>“Conformal Prediction.”</span> June 30,
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright 2024, M.L. DeBusk-Lane, Ph.D.</p>
+<p>Copyright 2026, M.L. DeBusk-Lane, Ph.D.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>This website is built with <i class="fa-solid fa-heart" title="a heart" aria-label="heart"></i>, <a href="https://github.com/debusklaneml/mldebusklane_q_website/tree/master" target="_blank"><i class="fa-brands fa-github" title="GitHub octocat logo" aria-label="github"></i></a>, <a href="https://www.r-project.org/about.html" target="_blank"><i class="fa-brands fa-r-project" title="R Project" aria-label="r-project"></i></a> and <a href="https://quarto.org/" target="_blank">Quarto</a></p>
+<p>Built with <i class="fa-solid fa-heart" title="a heart" aria-label="heart"></i>, <a href="https://github.com/debusklaneml/mldebusklane_q_website/tree/master" target="_blank"><i class="fa-brands fa-github" title="GitHub octocat logo" aria-label="github"></i></a>, and <a href="https://quarto.org/" target="_blank">Quarto</a></p>
 </div>
   </div>
 </footer>
