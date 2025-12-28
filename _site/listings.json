@@ -15,11 +15,11 @@
   {
     "listing": "/posts.html",
     "items": [
-      "/posts/blog_2025_12_27/blog_2025_12_27.html",
-      "/posts/conformal/confromal.html",
-      "/posts/siu/siu_001.html",
-      "/posts/simulation/simulation.html",
-      "/posts/groupwalk/groupwalk.html"
+      "/posts/blog_2025_12_27_writing_again/blog_2025_12_27_writing_again.html",
+      "/posts/blog_2024_06_30_conformal_prediction/blog_2024_06_30_conformal_prediction.html",
+      "/posts/blog_2024_06_15_sentence_embeddings/blog_2024_06_15_sentence_embeddings.html",
+      "/posts/blog_2023_11_04_simulation/blog_2023_11_04_simulation.html",
+      "/posts/blog_2020_02_25_group_walk/blog_2020_02_25_group_walk.html"
     ]
   }
 ]
