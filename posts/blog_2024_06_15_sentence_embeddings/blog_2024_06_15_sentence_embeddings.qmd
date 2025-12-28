@@ -4,8 +4,8 @@ description: "Stuff I Use is a blog series where I try to document advanced cool
 date: 06-15-2024
 categories: [R, Python, Transformers, NLP] # self-defined categories
 citation:
-  url: https://www.mldebusklane.com/posts/siu/siu_001.html
-image: /posts/siu/hf.png
+  url: https://www.mldebusklane.com/posts/blog_2024_06_15_sentence_embeddings/blog_2024_06_15_sentence_embeddings.html
+image: /posts/blog_2024_06_15_sentence_embeddings/hf.png
 draft: false
 ---
 

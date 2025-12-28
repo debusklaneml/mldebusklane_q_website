@@ -2,7 +2,7 @@
 title: "Conformal Prediction"
 date: '2024-06-30'
 categories: [R, Conformal]
-image: /posts/conformal/conformal.png
+image: /posts/blog_2024_06_30_conformal_prediction/conformal.png
 ---
 # Conformal Prediction
 

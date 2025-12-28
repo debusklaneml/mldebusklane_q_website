@@ -1,7 +1,7 @@
 ---
 title: 'Simulation: Part 0'
 date: '2023-11-04'
-image: /posts/simulation/simulated_data.png
+image: /posts/blog_2023_11_04_simulation/simulated_data.png
 categories:
   - Code
   - Simulation
