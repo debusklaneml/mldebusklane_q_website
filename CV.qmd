@@ -74,6 +74,10 @@ Email: mldebusklane\@gmail.com\
 
 <p class="hangingindent">Bae, C., DeBusk-Lane, M. Profiles of motivation in middle school science: Links to classroom structures and achievement (Poster presented at the 2018 American Psychological Association in San Francisco, CA.)</p>
 
+<p class="hangingindent">DeBusk-Lane, L. (2026, May). A machine learning approach to estimating questionnaire length in 105 countries. Paper presented at the session "Standardized Metrics and Validation Frameworks for LLM Assisted Survey Research," American Association for Public Opinion Research Annual Conference, Los Angeles, CA, United States.</p>
+
+<p class="hangingindent">DeBusk-Lane, L. (2025, May). Evaluating AI-driven telephone surveys: Insights from experimental testing. Paper presented at the session "Survey Methodology: Innovations and Applications in International Settings," American Association for Public Opinion Research Annual Conference, St. Louis, MO, United States.</p>
+
 <p class="hangingindent">DeBusk-Lane, M. Automating the Identification of Team-Based Leadership and Teamwork Characteristics Using LLMs (Paper presented at the 2024 Human Factors and Ergonomics Society in Az.)</p>
 
 <p class="hangingindent">DeBusk-Lane, M., Srinivasan, R., Leon, M., Marlar, J. Harnessing AI for Data Collection: A Global Perspective (Paper presented at the 2025 American Association for Public Opinion Research)</p>
